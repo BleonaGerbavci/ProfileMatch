@@ -24,5 +24,8 @@ namespace SoftwareDesignProject.Data.Models
 
         //Fakulteti 
 
+        public int FakultetiId { get; set; }
+        public Fakulteti Fakulteti { get; set; }
+
     }
 }
