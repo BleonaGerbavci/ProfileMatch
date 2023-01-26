@@ -12,13 +12,12 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"));
 });
-// lidhja e interfaces me services
-builder.Services.AddScoped<IFakultetiService, FakultetiService>();
-
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// lidhja e interface me service
+builder.Services.AddScoped<IFakultetiService, FakultetiService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -5,14 +5,12 @@ namespace SoftwareDesignProject.Services
 {
     public interface IFakultetiService
     {
-        public Task<ActionResult<IEnumerable<Fakulteti>>> GetAll();
+        public List<Fakulteti> GetAll();
+        public Fakulteti GetFacultyById(int id);
         public void AddFakulteti(Fakulteti fakulteti);
         public void DeleteFakulteti(int fakultetiId);
-        public Fakulteti UpdateFakulteti(int fakultetiId);
+        public Fakulteti UpdateFakulteti(int fakultetiId, Fakulteti fakulteti);
 
-        // ose mnyra tjeter
-        /*
-         * 
-         */
+        
     }
 }
