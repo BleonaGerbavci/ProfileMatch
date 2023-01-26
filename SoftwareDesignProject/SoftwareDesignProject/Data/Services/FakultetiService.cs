@@ -1,6 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using SoftwareDesignProject.Data;
+﻿using SoftwareDesignProject.Data;
+using SoftwareDesignProject.Data.Interfaces;
 using SoftwareDesignProject.Data.Models;
 
 namespace SoftwareDesignProject.Services

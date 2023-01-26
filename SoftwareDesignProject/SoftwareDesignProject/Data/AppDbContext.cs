@@ -11,5 +11,6 @@ namespace SoftwareDesignProject.Data
         }
         public DbSet<Student> Students { get; set; }
         public DbSet<Fakulteti> Fakultetet { get; set; }
+        public DbSet<Aplikimi> Aplikimet { get; set; }
     }
 }

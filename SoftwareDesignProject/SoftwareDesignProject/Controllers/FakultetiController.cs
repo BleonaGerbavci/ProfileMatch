@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SoftwareDesignProject.Data;
+using SoftwareDesignProject.Data.Interfaces;
 using SoftwareDesignProject.Data.Models;
-using SoftwareDesignProject.Services;
 
 namespace SoftwareDesignProject.Controllers
 {

@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SoftwareDesignProject.Data;
+using SoftwareDesignProject.Data.Interfaces;
 using SoftwareDesignProject.Data.Services;
 using SoftwareDesignProject.Services;
 

@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using SoftwareDesignProject.Data.Models;
+﻿using SoftwareDesignProject.Data.Models;
 
-namespace SoftwareDesignProject.Services
+namespace SoftwareDesignProject.Data.Interfaces
 {
     public interface IFakultetiService
     {
@@ -10,7 +9,6 @@ namespace SoftwareDesignProject.Services
         public void AddFakulteti(Fakulteti fakulteti);
         public void DeleteFakulteti(int fakultetiId);
         public Fakulteti UpdateFakulteti(int fakultetiId, Fakulteti fakulteti);
-
-        
+  
     }
 }
