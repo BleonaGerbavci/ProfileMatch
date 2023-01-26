@@ -6,7 +6,6 @@
         public string Drejtimi { get; set; }
         public string Departamenti { get; set; }
 
-        public int StudentPersonalNumber { get; set; }
-        public Student Student { get; set;}
+     
     }
 }

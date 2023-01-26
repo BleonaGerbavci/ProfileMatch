@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SoftwareDesignProject.Data;
 
@@ -10,9 +11,11 @@ using SoftwareDesignProject.Data;
 namespace SoftwareDesignProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230126215429_removeConn")]
+    partial class removeConn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -59,9 +62,6 @@ namespace SoftwareDesignProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("FakultetiId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Gjinia")
                         .IsRequired()
                         .HasColumnType("nvarchar(1)");
@@ -93,20 +93,7 @@ namespace SoftwareDesignProject.Migrations
 
                     b.HasKey("NrLeternjoftimit");
 
-                    b.HasIndex("FakultetiId");
-
                     b.ToTable("Students");
-                });
-
-            modelBuilder.Entity("SoftwareDesignProject.Data.Models.Student", b =>
-                {
-                    b.HasOne("SoftwareDesignProject.Data.Models.Fakulteti", "Fakulteti")
-                        .WithMany()
-                        .HasForeignKey("FakultetiId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Fakulteti");
                 });
 #pragma warning restore 612, 618
         }

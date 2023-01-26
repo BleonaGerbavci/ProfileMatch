@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SoftwareDesignProject.Data;
 
@@ -10,9 +11,11 @@ using SoftwareDesignProject.Data;
 namespace SoftwareDesignProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230126094541_UpdateDb")]
+    partial class UpdateDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,6 +39,9 @@ namespace SoftwareDesignProject.Migrations
                     b.Property<string>("Drejtimi")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StudentPersonalNumber")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -93,7 +99,8 @@ namespace SoftwareDesignProject.Migrations
 
                     b.HasKey("NrLeternjoftimit");
 
-                    b.HasIndex("FakultetiId");
+                    b.HasIndex("FakultetiId")
+                        .IsUnique();
 
                     b.ToTable("Students");
                 });
@@ -101,12 +108,18 @@ namespace SoftwareDesignProject.Migrations
             modelBuilder.Entity("SoftwareDesignProject.Data.Models.Student", b =>
                 {
                     b.HasOne("SoftwareDesignProject.Data.Models.Fakulteti", "Fakulteti")
-                        .WithMany()
-                        .HasForeignKey("FakultetiId")
+                        .WithOne("Student")
+                        .HasForeignKey("SoftwareDesignProject.Data.Models.Student", "FakultetiId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Fakulteti");
+                });
+
+            modelBuilder.Entity("SoftwareDesignProject.Data.Models.Fakulteti", b =>
+                {
+                    b.Navigation("Student")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
