@@ -2,13 +2,13 @@
 
 namespace SoftwareDesignProject.Data.Services
 {
-    public class StudentsService
+    public class StudentService : IStudentService
     {
-        private AppDbContext _context;
+        private readonly AppDbContext _context;
 
-        public StudentsService(AppDbContext context)
+        public StudentService(AppDbContext context)
         {
-            _context = context; 
+            _context = context;
         }
 
 
@@ -38,35 +38,35 @@ namespace SoftwareDesignProject.Data.Services
         public Student GetStudentById(int stdId) => _context.Students.FirstOrDefault(n => n.NrLeternjoftimit == stdId);
 
 
-         public Student UpdateStudentById(int nrLeternjoftimit, Student student)
-          {
-               var _student = _context.Students.FirstOrDefault(n => n.NrLeternjoftimit == nrLeternjoftimit);
-              if(_student != null)
-              {
-                  _student.Emri = student.Emri;
-                  _student.EmriIPrindit = student.EmriIPrindit;
-                  _student.Mbiemri = student.Mbiemri;
-                  _student.Qyteti = student.Qyteti;
-                  _student.NotaMesatare = student.NotaMesatare;
-                  _student.NumriKontaktues = student.NumriKontaktues;
-                  _student.Email = student.Email;
-                  _student.Gjinia = student.Gjinia;
-                  _student.VitiIStudimeve = student.VitiIStudimeve;
-                  _student.Statusi = student.Statusi;
-                  _student.ProfilePicUrl = student.ProfilePicUrl;
-                  _student.FakultetiId = student.FakultetiId;
+        public Student UpdateStudentById(int nrLeternjoftimit, Student student)
+        {
+            var _student = _context.Students.FirstOrDefault(n => n.NrLeternjoftimit == nrLeternjoftimit);
+            if (_student != null)
+            {
+                _student.Emri = student.Emri;
+                _student.EmriIPrindit = student.EmriIPrindit;
+                _student.Mbiemri = student.Mbiemri;
+                _student.Qyteti = student.Qyteti;
+                _student.NotaMesatare = student.NotaMesatare;
+                _student.NumriKontaktues = student.NumriKontaktues;
+                _student.Email = student.Email;
+                _student.Gjinia = student.Gjinia;
+                _student.VitiIStudimeve = student.VitiIStudimeve;
+                _student.Statusi = student.Statusi;
+                _student.ProfilePicUrl = student.ProfilePicUrl;
+                _student.FakultetiId = student.FakultetiId;
 
                 _context.SaveChanges();
-              }
-              return _student;
-          }
-       
-    
+            }
+            return _student;
+        }
+
+
 
         public void DeleteStudentById(int StudentId)
         {
             var _student = _context.Students.FirstOrDefault(n => n.NrLeternjoftimit == StudentId);
-            if( _student != null)
+            if (_student != null)
             {
                 _context.Students.Remove(_student);
                 _context.SaveChanges();
