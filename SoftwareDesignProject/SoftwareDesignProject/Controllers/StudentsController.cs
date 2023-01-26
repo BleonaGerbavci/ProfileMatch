@@ -1,8 +1,9 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
 using SoftwareDesignProject.Data;
+using SoftwareDesignProject.Data.Interfaces;
 using SoftwareDesignProject.Data.Models;
-using SoftwareDesignProject.Data.Services;
+
 
 namespace SoftwareDesignProject.Controllers
 {
@@ -48,7 +49,6 @@ namespace SoftwareDesignProject.Controllers
             var updatedStudent = _studentService.UpdateStudentById(nrLeternjoftimit, student);
             return Ok(updatedStudent);
         }
-
 
 
         [HttpDelete("delete-student-by-id/{nrLeternjoftimit}")]

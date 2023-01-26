@@ -1,6 +1,6 @@
 ﻿using SoftwareDesignProject.Data.Models;
 
-namespace SoftwareDesignProject.Data.Services
+namespace SoftwareDesignProject.Data.Interfaces
 {
     public interface IStudentService
     {

@@ -41,7 +41,7 @@ namespace SoftwareDesignProject.Controllers
         }
 
         [HttpPut("update-by-id/{id}")]
-        public IActionResult UpdateFakulteti(int fakultetiId, Fakulteti fakulteti)
+        public IActionResult UpdateFakulteti(int fakultetiId, [FromBody] Fakulteti fakulteti)
         {
             var updatedFaculty = _fakultetiService.UpdateFakulteti(fakultetiId, fakulteti);
             return Ok(updatedFaculty);
