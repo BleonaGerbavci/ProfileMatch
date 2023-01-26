@@ -37,9 +37,6 @@ namespace SoftwareDesignProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("StudentPersonalNumber")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.ToTable("Fakultetet");
@@ -96,8 +93,7 @@ namespace SoftwareDesignProject.Migrations
 
                     b.HasKey("NrLeternjoftimit");
 
-                    b.HasIndex("FakultetiId")
-                        .IsUnique();
+                    b.HasIndex("FakultetiId");
 
                     b.ToTable("Students");
                 });
@@ -105,18 +101,12 @@ namespace SoftwareDesignProject.Migrations
             modelBuilder.Entity("SoftwareDesignProject.Data.Models.Student", b =>
                 {
                     b.HasOne("SoftwareDesignProject.Data.Models.Fakulteti", "Fakulteti")
-                        .WithOne("Student")
-                        .HasForeignKey("SoftwareDesignProject.Data.Models.Student", "FakultetiId")
+                        .WithMany()
+                        .HasForeignKey("FakultetiId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Fakulteti");
-                });
-
-            modelBuilder.Entity("SoftwareDesignProject.Data.Models.Fakulteti", b =>
-                {
-                    b.Navigation("Student")
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

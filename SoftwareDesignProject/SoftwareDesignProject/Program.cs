@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SoftwareDesignProject.Data;
+using SoftwareDesignProject.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"));
 });
+// lidhja e interfaces me services
+builder.Services.AddScoped<IFakultetiService, FakultetiService>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

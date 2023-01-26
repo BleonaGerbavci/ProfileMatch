@@ -23,9 +23,9 @@ namespace SoftwareDesignProject.Data.Models
         public string ProfilePicUrl { get; set; }
 
         //Fakulteti 
-
-        public int FakultetiId { get; set; }
         public Fakulteti Fakulteti { get; set; }
+        public int FakultetiId { get; set; }
+        
 
     }
 }
