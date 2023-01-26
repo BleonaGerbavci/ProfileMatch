@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SoftwareDesignProject.Data;
+using SoftwareDesignProject.Data.Services;
 using SoftwareDesignProject.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-
+builder.Services.AddTransient<StudentsService>();
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"));
@@ -19,6 +20,8 @@ builder.Services.AddSwaggerGen();
 // lidhja e interface me service
 builder.Services.AddScoped<IFakultetiService, FakultetiService>();
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

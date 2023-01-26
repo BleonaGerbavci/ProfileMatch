@@ -21,7 +21,7 @@ namespace SoftwareDesignProject.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddFakulteti(Fakulteti fk)
+        public IActionResult AddFakulteti([FromBody] Fakulteti fk)
         {
             _fakultetiService.AddFakulteti(fk);
             return Ok();
