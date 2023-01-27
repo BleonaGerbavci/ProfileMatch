@@ -1,6 +1,6 @@
 ﻿namespace SoftwareDesignProject.Data.Models
 {
-    public class PNG : File
+    public class PNG : CustomFile
     {
         public double PaymentAmount { get; set; }
         public string ImageUrl { get; set; }

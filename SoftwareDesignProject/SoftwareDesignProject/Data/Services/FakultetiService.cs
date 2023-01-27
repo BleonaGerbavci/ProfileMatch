@@ -24,9 +24,9 @@ namespace SoftwareDesignProject.Services
              _context.SaveChangesAsync();
         }
 
-        public void DeleteFakulteti(int fakultetiId)
+        public async Task DeleteFakulteti(int fakultetiId)
         {
-            var _fakulteti = _context.Fakultetet.FirstOrDefault(x => x.Id == fakultetiId);
+            var _fakulteti = await _context.Fakultetet.FindAsync(fakultetiId);
             if (_fakulteti != null)
             {
                 _context.Fakultetet.Remove(_fakulteti);
@@ -42,7 +42,6 @@ namespace SoftwareDesignProject.Services
         public Fakulteti GetFacultyById(int id) { 
             return _context.Fakultetet.FirstOrDefault(x => x.Id == id);
         }
-
 
         public Fakulteti UpdateFakulteti(int fakultetiId, Fakulteti fakulteti)
         {

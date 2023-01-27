@@ -21,7 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Data\Upload\Files\" />
     <Folder Include="Migrations\" />
+    <Folder Include="Views\" />
   </ItemGroup>
 
 </Project>

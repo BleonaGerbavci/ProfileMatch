@@ -1,6 +1,6 @@
 ﻿namespace SoftwareDesignProject.Data.Models
 {
-    public class File
+    public class CustomFile
     {
        public int Id { get; set; }
        public string Name { get; set; }
