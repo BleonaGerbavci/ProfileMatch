@@ -4,7 +4,8 @@
     {
         public int Id { get; set; }
         public int NrPersonal { get; set; }
-        public string Fakulteti { get; set; }
+    
+      //    public string Fakulteti { get; set; }
         public bool canApply { get; set; }
         public DateTime ApplicationDate { get; set; }
         public DateTime OpenDate { get; set; }
