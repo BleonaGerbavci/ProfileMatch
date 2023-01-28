@@ -30,6 +30,7 @@ builder.Services.AddCors(option =>
 builder.Services.AddScoped<IFakultetiService, FakultetiService>();
 builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<IAplikimiService, AplikimiService>();
+builder.Services.AddScoped<IFileService, FileService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

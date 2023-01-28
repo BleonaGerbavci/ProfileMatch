@@ -12,13 +12,9 @@ namespace SoftwareDesignProject.Controllers
     public class StudentsController : ControllerBase
     {
         //dependency injection 
-        private readonly AppDbContext _context;
         private readonly IStudentService _studentService;
-
-
-        public StudentsController(AppDbContext context, IStudentService studentService)
+        public StudentsController (IStudentService studentService)
         {
-            _context = context;
             _studentService = studentService;
         }
 

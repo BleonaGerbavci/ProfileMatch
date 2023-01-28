@@ -75,16 +75,6 @@ namespace SoftwareDesignProject.Data.Services
         }
 
 
-        // prove
-        /*public string[] matchFKwithPN(int nrPersonal)
-        {      
-            var _studenti = _context.Students.FirstOrDefault(n => n.NrLeternjoftimit == nrPersonal);
-            var _fakulteti = _studenti.Fakulteti;
-            string _drejtimi = _fakulteti.Drejtimi;
-            string _departamenti = _fakulteti.Departamenti;
-            return { _drejtimi, _departamenti };
-            
-        }
-        */
+       
     }
 }
