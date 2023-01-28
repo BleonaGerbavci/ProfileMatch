@@ -8,3 +8,4 @@
         public FileType FileType { get; set; }
     }
 }
+

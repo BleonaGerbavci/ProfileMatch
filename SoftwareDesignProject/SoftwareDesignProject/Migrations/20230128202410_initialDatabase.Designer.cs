@@ -12,8 +12,8 @@ using SoftwareDesignProject.Data;
 namespace SoftwareDesignProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230126192816_aplikimi")]
-    partial class aplikimi
+    [Migration("20230128202410_initialDatabase")]
+    partial class initialDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -92,6 +92,30 @@ namespace SoftwareDesignProject.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Fakultetet");
+                });
+
+            modelBuilder.Entity("SoftwareDesignProject.Data.Models.FileDetails", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<byte[]>("FileData")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("FileType")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("FileDetails");
                 });
 
             modelBuilder.Entity("SoftwareDesignProject.Data.Models.Student", b =>

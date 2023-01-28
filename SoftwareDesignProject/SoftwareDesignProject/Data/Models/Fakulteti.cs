@@ -5,6 +5,7 @@
         public int Id { get; set; }
         public string Drejtimi { get; set;}
         public string Departamenti { get; set; }
+
         
     }
 }

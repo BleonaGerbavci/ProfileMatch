@@ -2,8 +2,8 @@
 {
     public class FileUpload
     {
-        public IFormFile FileDetails { get; set; }
-        public FileType FileType { get; set; }
-
+      public IFormFile FileDetails { get; set; }
+      public FileType FileType { get; set; }
+        
     }
 }

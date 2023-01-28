@@ -74,7 +74,5 @@ namespace SoftwareDesignProject.Data.Services
             }
         }
 
-
-       
     }
 }

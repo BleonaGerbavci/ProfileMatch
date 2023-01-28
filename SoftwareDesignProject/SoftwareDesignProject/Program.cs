@@ -18,15 +18,8 @@ builder.Services.AddTransient<StudentService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddCors(option =>
-{
-    option.AddDefaultPolicy(options =>
-    {
-        options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
-    });
-});
 
-// lidhja e interface me service
+// lidhja e interfaces me services
 builder.Services.AddScoped<IFakultetiService, FakultetiService>();
 builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<IAplikimiService, AplikimiService>();

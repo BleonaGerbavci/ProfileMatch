@@ -16,7 +16,7 @@ namespace SoftwareDesignProject.Controllers
             _uploadService = uploadService;
         }
 
-
+        
         [HttpPost("PostSingleFile")]
         public async Task<ActionResult> PostSingleFile([FromForm] FileUpload fileDetails)
         {
@@ -36,7 +36,7 @@ namespace SoftwareDesignProject.Controllers
             }
         }
 
-
+      
         [HttpGet("DownloadFile")]
         public async Task<ActionResult> DownloadFile(int id)
         {
@@ -57,3 +57,4 @@ namespace SoftwareDesignProject.Controllers
         }
     }
 }
+

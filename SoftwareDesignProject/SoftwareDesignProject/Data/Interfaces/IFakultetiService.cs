@@ -4,10 +4,11 @@ namespace SoftwareDesignProject.Data.Interfaces
 {
     public interface IFakultetiService
     {
-        List<Fakulteti> GetAll();
-        Fakulteti GetFacultyById(int id);
-        void AddFakulteti(Fakulteti fakulteti);
-        Task DeleteFakulteti(int fakultetiId);
-        Fakulteti UpdateFakulteti(int fakultetiId, Fakulteti fakulteti);
+        public List<Fakulteti> GetAll();
+        public Fakulteti GetFacultyById(int id);
+        public void AddFakulteti(Fakulteti fakulteti);
+        public void DeleteFakulteti(int fakultetiId);
+        public Fakulteti UpdateFakulteti(int fakultetiId, Fakulteti fakulteti);
+  
     }
 }
