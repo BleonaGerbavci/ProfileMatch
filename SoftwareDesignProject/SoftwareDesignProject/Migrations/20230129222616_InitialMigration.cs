@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SoftwareDesignProject.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -73,7 +73,6 @@ namespace SoftwareDesignProject.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FakultetiId = table.Column<int>(type: "int", nullable: false),
                     isSpecialCategory = table.Column<bool>(type: "bit", nullable: false),
                     SpecialCategoryReason = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ApplyDate = table.Column<DateTime>(type: "datetime2", nullable: false),

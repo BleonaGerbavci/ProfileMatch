@@ -1,6 +1,7 @@
 ﻿using SoftwareDesignProject.Data;
 using SoftwareDesignProject.Data.Interfaces;
 using SoftwareDesignProject.Data.Models;
+using SoftwareDesignProject.Data.ViewModels;
 
 namespace SoftwareDesignProject.Services
 {
@@ -12,16 +13,15 @@ namespace SoftwareDesignProject.Services
             _context = context;
         }
 
-        public void AddFakulteti(Fakulteti fakulteti)
+        public void AddFakulteti(FakultetiVM fakulteti)
         {
             var _fakulteti = new Fakulteti()
             {
-                Id = fakulteti.Id,
                 Drejtimi = fakulteti.Drejtimi,
                 Departamenti = fakulteti.Departamenti
             };
              _context.Fakultetet.Add(_fakulteti);
-             _context.SaveChangesAsync();
+             _context.SaveChanges();
         }
 
         public void DeleteFakulteti(int fakultetiId)
@@ -44,7 +44,7 @@ namespace SoftwareDesignProject.Services
         }
 
 
-        public Fakulteti UpdateFakulteti(int fakultetiId, Fakulteti fakulteti)
+        public Fakulteti UpdateFakulteti(int fakultetiId, FakultetiVM fakulteti)
         {
             var _fakulteti = _context.Fakultetet.FirstOrDefault(x => x.Id == fakultetiId);
             if (_fakulteti != null)

@@ -2,6 +2,7 @@
 using SoftwareDesignProject.Data;
 using SoftwareDesignProject.Data.Interfaces;
 using SoftwareDesignProject.Data.Models;
+using SoftwareDesignProject.Data.ViewModels;
 
 namespace SoftwareDesignProject.Controllers
 {
@@ -11,17 +12,16 @@ namespace SoftwareDesignProject.Controllers
     public class FakultetiController : ControllerBase
     {
         // dependency injection
-        private readonly AppDbContext _context;
+       
         private readonly IFakultetiService _fakultetiService;
 
-        public FakultetiController(AppDbContext context, IFakultetiService fakultetiService)
+        public FakultetiController(IFakultetiService fakultetiService)
         {
-            _context = context;
             _fakultetiService = fakultetiService;
         }
 
-        [HttpPost]
-        public IActionResult AddFakulteti([FromBody] Fakulteti fk)
+        [HttpPost("add-fakulteti")]
+        public IActionResult AddFakulteti([FromBody] FakultetiVM fk)
         {
             _fakultetiService.AddFakulteti(fk);
             return Ok();
@@ -41,7 +41,7 @@ namespace SoftwareDesignProject.Controllers
         }
 
         [HttpPut("update-by-id/{id}")]
-        public IActionResult UpdateFakulteti(int fakultetiId, [FromBody] Fakulteti fakulteti)
+        public IActionResult UpdateFakulteti(int fakultetiId, [FromBody] FakultetiVM fakulteti)
         {
             var updatedFaculty = _fakultetiService.UpdateFakulteti(fakultetiId, fakulteti);
             return Ok(updatedFaculty);

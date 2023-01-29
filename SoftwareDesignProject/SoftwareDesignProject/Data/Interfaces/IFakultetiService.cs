@@ -1,4 +1,5 @@
 ﻿using SoftwareDesignProject.Data.Models;
+using SoftwareDesignProject.Data.ViewModels;
 
 namespace SoftwareDesignProject.Data.Interfaces
 {
@@ -6,9 +7,9 @@ namespace SoftwareDesignProject.Data.Interfaces
     {
         public List<Fakulteti> GetAll();
         public Fakulteti GetFacultyById(int id);
-        public void AddFakulteti(Fakulteti fakulteti);
+        public void AddFakulteti(FakultetiVM fakulteti);
         public void DeleteFakulteti(int fakultetiId);
-        public Fakulteti UpdateFakulteti(int fakultetiId, Fakulteti fakulteti);
+        public Fakulteti UpdateFakulteti(int fakultetiId, FakultetiVM fakulteti);
   
     }
 }
