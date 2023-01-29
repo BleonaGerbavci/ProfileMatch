@@ -13,22 +13,15 @@ namespace SoftwareDesignProject.Data.Services
             _context = context;
         }
 
-        public void AddAplikimi(Aplikimi aplikimi)
+        public async Task AddAplikimi(Aplikimi aplikimi)
         {
-            var _aplikimi = new Aplikimi()
-            {
-                NrPersonal = aplikimi.NrPersonal,
-                Fakulteti = matchFKwithNP(aplikimi.NrPersonal),
-                ApplicationDate = aplikimi.ApplicationDate,
-                ApplicationStatus = aplikimi.ApplicationStatus,
-                isSpecialCategory = aplikimi.isSpecialCategory,
-                SpecialCategoryReason = aplikimi.SpecialCategoryReason
-            };
-            _context.Aplikimet.Add(_aplikimi);
-            _context.SaveChangesAsync();
+           
+            _context.Aplikimet.Add(aplikimi);
+            _context.SaveChanges();
+
         }
 
-        public string matchFKwithNP(int nrPersonal)
+       /* public string matchFKwithNP(int nrPersonal)
         {
             var _studenti = _context.Students.FirstOrDefault(n => n.NrLeternjoftimit == nrPersonal);
             if(_studenti == null)
@@ -39,5 +32,6 @@ namespace SoftwareDesignProject.Data.Services
             var _departamenti = _fakulteti.Departamenti;
             return _departamenti;
         }
+       */
     }
 }

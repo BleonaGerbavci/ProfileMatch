@@ -16,7 +16,7 @@ namespace SoftwareDesignProject.Controllers
         }
 
         [HttpPost("add-aplikimi")]
-        public IActionResult AddAplikimi([FromBody] Aplikimi aplikimi)
+        public IActionResult AddAplikimi(Aplikimi aplikimi)
         {
             _aplikimiService.AddAplikimi(aplikimi);
             return Ok();
