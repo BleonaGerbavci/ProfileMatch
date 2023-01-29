@@ -45,6 +45,13 @@ namespace SoftwareDesignProject.Controllers
             return Ok(updatedAplikim);
         }
 
+        [HttpDelete("delete-aplikimi/{id}")]
+        public IActionResult DeleteAplikimi(int id)
+        {
+            _aplikimiService.DeleteAplikimi(id);
+            return Ok();
+        }
+
        
     }
 }

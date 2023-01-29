@@ -30,6 +30,16 @@ namespace SoftwareDesignProject.Data.Services
 
         }
 
+        public void DeleteAplikimi(int id)
+        {
+            var _aplikimi = _context.Aplikimet.FirstOrDefault(x => x.Id == id);
+            if (_aplikimi != null)
+            {
+                _context.Aplikimet.Remove(_aplikimi);
+                _context.SaveChanges();
+            }
+        }
+
         /* public string matchFKwithNP(int nrPersonal)
          {
              var _studenti = _context.Students.FirstOrDefault(n => n.NrLeternjoftimit == nrPersonal);

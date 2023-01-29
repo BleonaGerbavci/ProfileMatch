@@ -6,8 +6,7 @@ namespace SoftwareDesignProject.Data.Interfaces
     public interface IAplikimiService
     {
         public void AddAplikimi(AplikimiVM aplikimi);
-
-        //string matchFKwithNP(int nrPersonal);
+        public void DeleteAplikimi(int id);
         public List<Aplikimi> GetAllAplikimet();
         public Aplikimi GetAplikimiById(int aplikimiId);
         public Aplikimi UpdateAplikiminById(int aplikimiId, AplikimiVM aplikimi);
