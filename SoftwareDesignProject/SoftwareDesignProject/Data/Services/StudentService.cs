@@ -1,5 +1,6 @@
 ﻿using SoftwareDesignProject.Data.Interfaces;
 using SoftwareDesignProject.Data.Models;
+using SoftwareDesignProject.Data.ViewModels;
 
 namespace SoftwareDesignProject.Data.Services
 {
@@ -13,7 +14,7 @@ namespace SoftwareDesignProject.Data.Services
         }
 
 
-        public void AddStudent(Student student)
+        public void AddStudent(StudentVM student)
         {
             var _student = new Student()
             {
@@ -39,7 +40,7 @@ namespace SoftwareDesignProject.Data.Services
         public Student GetStudentById(int stdId) => _context.Students.FirstOrDefault(n => n.NrLeternjoftimit == stdId);
 
 
-        public Student UpdateStudentById(int nrLeternjoftimit, Student student)
+        public Student UpdateStudentById(int nrLeternjoftimit, StudentVM student)
         {
             var _student = _context.Students.FirstOrDefault(n => n.NrLeternjoftimit == nrLeternjoftimit);
             if (_student != null)

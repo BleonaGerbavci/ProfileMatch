@@ -30,17 +30,10 @@ namespace SoftwareDesignProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("ApplicationDate")
+                    b.Property<DateTime>("ApplyDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("FakultetiId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("NrPersonal")
-                        .HasColumnType("int");
-
                     b.Property<string>("SpecialCategoryReason")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("StudentiNrLeternjoftimit")

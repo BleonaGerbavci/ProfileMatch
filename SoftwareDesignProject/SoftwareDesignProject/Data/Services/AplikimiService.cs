@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SoftwareDesignProject.Data.Interfaces;
 using SoftwareDesignProject.Data.Models;
+using SoftwareDesignProject.Data.ViewModels;
 
 namespace SoftwareDesignProject.Data.Services
 {
@@ -13,10 +14,18 @@ namespace SoftwareDesignProject.Data.Services
             _context = context;
         }
 
-        public async Task AddAplikimi(Aplikimi aplikimi)
+        public void AddAplikimi(AplikimiVM aplikimi)
         {
-           
-            _context.Aplikimet.Add(aplikimi);
+
+            var _aplikimi = new Aplikimi()
+            {
+               
+                isSpecialCategory = aplikimi.isSpecialCategory,
+                SpecialCategoryReason = aplikimi.isSpecialCategory ? aplikimi.SpecialCategoryReason : null,
+                ApplyDate = DateTime.Now,
+                StudentiNrLeternjoftimit = aplikimi.StudentiNrLeternjoftimit
+            };   
+            _context.Aplikimet.Add(_aplikimi);
             _context.SaveChanges();
 
         }

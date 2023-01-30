@@ -3,9 +3,9 @@
     public class Aplikimi
     {
         public int Id { get; set; }
-        public int FakultetiId { get; set; }
         public bool isSpecialCategory { get; set; }
-        public string SpecialCategoryReason   { get; set; }
+        public string? SpecialCategoryReason   { get; set; }
+        public DateTime ApplyDate { get; set; }
         public int StudentiNrLeternjoftimit { get; set; }
         public Student Studenti { get; set; }
        

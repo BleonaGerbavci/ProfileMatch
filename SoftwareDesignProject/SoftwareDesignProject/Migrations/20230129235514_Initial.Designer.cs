@@ -12,8 +12,8 @@ using SoftwareDesignProject.Data;
 namespace SoftwareDesignProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230128233507_updatedAplikimiModel")]
-    partial class updatedAplikimiModel
+    [Migration("20230129235514_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,17 +32,13 @@ namespace SoftwareDesignProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("ApplicationDate")
+                    b.Property<DateTime>("ApplyDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("FakultetiId")
                         .HasColumnType("int");
 
-                    b.Property<int>("NrPersonal")
-                        .HasColumnType("int");
-
                     b.Property<string>("SpecialCategoryReason")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("StudentiNrLeternjoftimit")

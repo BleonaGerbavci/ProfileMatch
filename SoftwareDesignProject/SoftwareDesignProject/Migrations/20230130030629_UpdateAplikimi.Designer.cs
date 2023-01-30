@@ -12,18 +12,17 @@ using SoftwareDesignProject.Data;
 namespace SoftwareDesignProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230128202410_initialDatabase")]
-    partial class initialDatabase
+    [Migration("20230130030629_UpdateAplikimi")]
+    partial class UpdateAplikimi
     {
-        /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.2")
+                .HasAnnotation("ProductVersion", "6.0.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("SoftwareDesignProject.Data.Models.Aplikimi", b =>
                 {
@@ -31,37 +30,16 @@ namespace SoftwareDesignProject.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("ApplicationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ApplicationStatus")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CloseDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Fakulteti")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("NrPersonal")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("OpenDate")
+                    b.Property<DateTime>("ApplyDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("SpecialCategoryReason")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("StudentiNrLeternjoftimit")
                         .HasColumnType("int");
-
-                    b.Property<bool>("canApply")
-                        .HasColumnType("bit");
 
                     b.Property<bool>("isSpecialCategory")
                         .HasColumnType("bit");
@@ -79,7 +57,7 @@ namespace SoftwareDesignProject.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Departamenti")
                         .IsRequired()
@@ -100,7 +78,7 @@ namespace SoftwareDesignProject.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
                     b.Property<byte[]>("FileData")
                         .IsRequired()

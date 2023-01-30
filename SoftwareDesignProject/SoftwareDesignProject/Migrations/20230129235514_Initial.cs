@@ -5,10 +5,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SoftwareDesignProject.Migrations
 {
-    /// <inheritdoc />
-    public partial class initialDatabase : Migration
+    public partial class Initial : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -75,15 +73,10 @@ namespace SoftwareDesignProject.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    NrPersonal = table.Column<int>(type: "int", nullable: false),
-                    Fakulteti = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    canApply = table.Column<bool>(type: "bit", nullable: false),
-                    ApplicationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    OpenDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CloseDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ApplicationStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FakultetiId = table.Column<int>(type: "int", nullable: false),
                     isSpecialCategory = table.Column<bool>(type: "bit", nullable: false),
-                    SpecialCategoryReason = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SpecialCategoryReason = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ApplyDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     StudentiNrLeternjoftimit = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -108,7 +101,6 @@ namespace SoftwareDesignProject.Migrations
                 column: "FakultetiId");
         }
 
-        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

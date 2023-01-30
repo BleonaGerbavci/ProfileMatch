@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SoftwareDesignProject.Data.Interfaces;
 using SoftwareDesignProject.Data.Models;
+using SoftwareDesignProject.Data.ViewModels;
 
 namespace SoftwareDesignProject.Controllers
 {
@@ -16,7 +17,7 @@ namespace SoftwareDesignProject.Controllers
         }
 
         [HttpPost("add-aplikimi")]
-        public IActionResult AddAplikimi(Aplikimi aplikimi)
+        public IActionResult AddAplikimi(AplikimiVM aplikimi)
         {
             _aplikimiService.AddAplikimi(aplikimi);
             return Ok();

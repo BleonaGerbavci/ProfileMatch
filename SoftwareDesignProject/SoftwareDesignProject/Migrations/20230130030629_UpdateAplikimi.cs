@@ -4,23 +4,23 @@
 
 namespace SoftwareDesignProject.Migrations
 {
-    public partial class Initial : Migration
+    public partial class UpdateAplikimi : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Fakulteti",
+                name: "FakultetiId",
                 table: "Aplikimet");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "Fakulteti",
+            migrationBuilder.AddColumn<int>(
+                name: "FakultetiId",
                 table: "Aplikimet",
-                type: "nvarchar(max)",
+                type: "int",
                 nullable: false,
-                defaultValue: "");
+                defaultValue: 0);
         }
     }
 }

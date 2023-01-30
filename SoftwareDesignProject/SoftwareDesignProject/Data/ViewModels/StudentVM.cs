@@ -1,12 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace SoftwareDesignProject.Data.Models
+﻿namespace SoftwareDesignProject.Data.ViewModels
 {
-    public class Student
+    public class StudentVM
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [Key]
         public int NrLeternjoftimit { get; set; }
         public string Emri { get; set; }
         public string EmriIPrindit { get; set; }
@@ -19,11 +14,6 @@ namespace SoftwareDesignProject.Data.Models
         public int VitiIStudimeve { get; set; }
         public string Statusi { get; set; }
         public string ProfilePicUrl { get; set; }
-
-        //Fakulteti 
-
         public int FakultetiId { get; set; }
-        public Fakulteti Fakulteti { get; set; }
-
     }
 }

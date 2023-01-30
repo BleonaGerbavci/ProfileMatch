@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SoftwareDesignProject.Data;
 using SoftwareDesignProject.Data.Interfaces;
 using SoftwareDesignProject.Data.Models;
-
+using SoftwareDesignProject.Data.ViewModels;
 
 namespace SoftwareDesignProject.Controllers
 {
@@ -33,14 +33,14 @@ namespace SoftwareDesignProject.Controllers
         }
 
         [HttpPost("add-student")]
-        public IActionResult AddStudent([FromBody] Student student)
+        public IActionResult AddStudent([FromBody] StudentVM student)
         {
             _studentService.AddStudent(student);
             return Ok();
         }
 
         [HttpPut("update-student/{nrLeternjoftimit}")]
-        public IActionResult UpdateStudentById(int nrLeternjoftimit, [FromBody] Student student)
+        public IActionResult UpdateStudentById(int nrLeternjoftimit, [FromBody] StudentVM student)
         {
             var updatedStudent = _studentService.UpdateStudentById(nrLeternjoftimit, student);
             return Ok(updatedStudent);
