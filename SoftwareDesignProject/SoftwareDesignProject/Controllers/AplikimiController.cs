@@ -23,6 +23,28 @@ namespace SoftwareDesignProject.Controllers
             return Ok();
         }
 
+        [HttpGet]
+        public IActionResult GetAllAplikimet()
+        {
+            var allAplikimet = _aplikimiService.GetAllAplikimet();
+            return Ok(allAplikimet);
 
+        }
+
+        [HttpGet("get-by-id /{id}")]
+        public IActionResult GetAplikimiById(int id)
+        {
+            var _aplikimi = _aplikimiService.GetAplikimiById(id);
+            return Ok(_aplikimi);
+        }
+
+        [HttpPut("update-by-id/{id}")]
+        public IActionResult UpdateAplikiminById(int aplikimiId, [FromBody] AplikimiVM aplikimi)
+        {
+            var updatedAplikim = _aplikimiService.UpdateAplikiminById(aplikimiId, aplikimi);
+            return Ok(updatedAplikim);
+        }
+
+       
     }
 }

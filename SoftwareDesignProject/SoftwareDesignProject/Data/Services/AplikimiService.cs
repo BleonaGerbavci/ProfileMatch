@@ -30,17 +30,37 @@ namespace SoftwareDesignProject.Data.Services
 
         }
 
-       /* public string matchFKwithNP(int nrPersonal)
+        /* public string matchFKwithNP(int nrPersonal)
+         {
+             var _studenti = _context.Students.FirstOrDefault(n => n.NrLeternjoftimit == nrPersonal);
+             if(_studenti == null)
+             {
+                 return "Numri Personal nuk u gjet";
+             }
+             var _fakulteti = _studenti.Fakulteti;      
+             var _departamenti = _fakulteti.Departamenti;
+             return _departamenti;
+         }
+        */
+
+        public List<Aplikimi> GetAllAplikimet() => _context.Aplikimet.ToList();
+
+        public Aplikimi GetAplikimiById(int aplikimiId) => _context.Aplikimet.FirstOrDefault(n => n.Id == aplikimiId);
+
+
+        public Aplikimi UpdateAplikiminById(int aplikimiId, AplikimiVM aplikimi)
         {
-            var _studenti = _context.Students.FirstOrDefault(n => n.NrLeternjoftimit == nrPersonal);
-            if(_studenti == null)
+            var _aplikimi = _context.Aplikimet.FirstOrDefault(n => n.Id == aplikimiId);
+            if (_aplikimi != null)
             {
-                return "Numri Personal nuk u gjet";
+                _aplikimi.isSpecialCategory = aplikimi.isSpecialCategory;
+                _aplikimi.SpecialCategoryReason = aplikimi.SpecialCategoryReason;
+                _aplikimi.ApplyDate = aplikimi.ApplyDate;
+                _aplikimi.StudentiNrLeternjoftimit = aplikimi.StudentiNrLeternjoftimit;
+                
+                _context.SaveChanges();
             }
-            var _fakulteti = _studenti.Fakulteti;      
-            var _departamenti = _fakulteti.Departamenti;
-            return _departamenti;
+            return _aplikimi;
         }
-       */
     }
 }
