@@ -2,6 +2,7 @@
 using SoftwareDesignProject.Data.Interfaces;
 using SoftwareDesignProject.Data.Models;
 using SoftwareDesignProject.Data.ViewModels;
+using SoftwareDesignProject.Exceptions;
 
 namespace SoftwareDesignProject.Controllers
 {
@@ -19,8 +20,20 @@ namespace SoftwareDesignProject.Controllers
         [HttpPost("add-aplikimi")]
         public IActionResult AddAplikimi(AplikimiVM aplikimi)
         {
-            _aplikimiService.AddAplikimi(aplikimi);
-            return Ok();
+            try
+            {
+                _aplikimiService.AddAplikimi(aplikimi);
+                return Ok("Application submitted successfully.");
+            }
+            catch (StudentNotFoundException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (StudentAlreadyAppliedException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
         }
 
         [HttpGet]
@@ -52,6 +65,5 @@ namespace SoftwareDesignProject.Controllers
             return Ok();
         }
 
-       
     }
 }

@@ -12,14 +12,16 @@ namespace SoftwareDesignProject.Controllers
     public class FakultetiController : ControllerBase
     {
         // dependency injection
-       
+        private readonly AppDbContext _context;
         private readonly IFakultetiService _fakultetiService;
 
-        public FakultetiController(IFakultetiService fakultetiService)
+        public FakultetiController(AppDbContext context, IFakultetiService fakultetiService)
         {
+            _context = context;
             _fakultetiService = fakultetiService;
         }
 
+        
         [HttpPost("add-fakulteti")]
         public IActionResult AddFakulteti([FromBody] FakultetiVM fk)
         {

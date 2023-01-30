@@ -2,6 +2,7 @@
 using SoftwareDesignProject.Data.Interfaces;
 using SoftwareDesignProject.Data.Models;
 using SoftwareDesignProject.Data.ViewModels;
+using SoftwareDesignProject.Exceptions;
 
 namespace SoftwareDesignProject.Data.Services
 {
@@ -14,30 +15,45 @@ namespace SoftwareDesignProject.Data.Services
             _context = context;
         }
 
+        //get student by their personal number
+        public Student GetStudentByPersonalNumber(int personalNumber)
+        {
+            
+          return _context.Students.FirstOrDefault(s => s.NrLeternjoftimit == personalNumber);
+           
+        }
+
+        // check if the student has already applied
+        public bool HasStudentAlreadyApplied(int personalNumber)
+        {
+            var existingApplication = _context.Aplikimet.FirstOrDefault(a => a.StudentiNrLeternjoftimit == personalNumber);
+            return existingApplication != null;
+        }
+
+
+
         public void AddAplikimi(AplikimiVM aplikimi)
         {
-
+            var student = GetStudentByPersonalNumber(aplikimi.StudentiNrLeternjoftimit);
+            if (student == null)
+            {
+                throw new StudentNotFoundException("You can't apply!");
+            }
+            var hasAlreadyApplied = _context.Aplikimet.Any(a => a.StudentiNrLeternjoftimit == aplikimi.StudentiNrLeternjoftimit);
+            if (hasAlreadyApplied)
+            {
+                throw new StudentAlreadyAppliedException("You have already applied.");
+            }
             var _aplikimi = new Aplikimi()
             {
-               
                 isSpecialCategory = aplikimi.isSpecialCategory,
                 SpecialCategoryReason = aplikimi.isSpecialCategory ? aplikimi.SpecialCategoryReason : null,
                 ApplyDate = DateTime.Now,
                 StudentiNrLeternjoftimit = aplikimi.StudentiNrLeternjoftimit
-            };   
+            };
             _context.Aplikimet.Add(_aplikimi);
             _context.SaveChanges();
 
-        }
-
-        public void DeleteAplikimi(int id)
-        {
-            var _aplikimi = _context.Aplikimet.FirstOrDefault(x => x.Id == id);
-            if (_aplikimi != null)
-            {
-                _context.Aplikimet.Remove(_aplikimi);
-                _context.SaveChanges();
-            }
         }
 
         /* public string matchFKwithNP(int nrPersonal)
@@ -71,6 +87,16 @@ namespace SoftwareDesignProject.Data.Services
                 _context.SaveChanges();
             }
             return _aplikimi;
+        }
+
+        public void DeleteAplikimi(int id)
+        {
+            var _aplikimi = _context.Aplikimet.FirstOrDefault(x => x.Id == id);
+            if (_aplikimi != null)
+            {
+                _context.Aplikimet.Remove(_aplikimi);
+                _context.SaveChanges();
+            }
         }
     }
 }

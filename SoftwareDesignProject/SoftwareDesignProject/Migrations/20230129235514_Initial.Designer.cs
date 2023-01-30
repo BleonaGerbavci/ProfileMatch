@@ -12,8 +12,8 @@ using SoftwareDesignProject.Data;
 namespace SoftwareDesignProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230129222616_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20230129235514_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -34,6 +34,9 @@ namespace SoftwareDesignProject.Migrations
 
                     b.Property<DateTime>("ApplyDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("FakultetiId")
+                        .HasColumnType("int");
 
                     b.Property<string>("SpecialCategoryReason")
                         .HasColumnType("nvarchar(max)");

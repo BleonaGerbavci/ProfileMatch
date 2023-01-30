@@ -20,8 +20,8 @@ namespace SoftwareDesignProject.Services
                 Drejtimi = fakulteti.Drejtimi,
                 Departamenti = fakulteti.Departamenti
             };
-             _context.Fakultetet.Add(_fakulteti);
-             _context.SaveChanges();
+            _context.Fakultetet.Add(_fakulteti);
+            _context.SaveChanges();
         }
 
         public void DeleteFakulteti(int fakultetiId)
@@ -30,7 +30,7 @@ namespace SoftwareDesignProject.Services
             if (_fakulteti != null)
             {
                 _context.Fakultetet.Remove(_fakulteti);
-                 _context.SaveChanges();
+                _context.SaveChanges();
             }
         }
 
@@ -39,7 +39,8 @@ namespace SoftwareDesignProject.Services
             return _context.Fakultetet.ToList();
         }
 
-        public Fakulteti GetFacultyById(int id) { 
+        public Fakulteti GetFacultyById(int id)
+        {
             return _context.Fakultetet.FirstOrDefault(x => x.Id == id);
         }
 
