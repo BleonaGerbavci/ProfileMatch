@@ -13,5 +13,7 @@ namespace SoftwareDesignProject.Data
         public DbSet<Fakulteti> Fakultetet { get; set; }
         public DbSet<Aplikimi> Aplikimet { get; set; }
         public DbSet<FileDetails> FileDetails { get; set; }
+        public DbSet<PDF> Pdf { get; set; }
+        public DbSet<PNG> Png { get; set; }
     }
 }

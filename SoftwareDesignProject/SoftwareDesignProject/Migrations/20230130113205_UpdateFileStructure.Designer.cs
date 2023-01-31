@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SoftwareDesignProject.Data;
 
@@ -11,9 +12,10 @@ using SoftwareDesignProject.Data;
 namespace SoftwareDesignProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230130113205_UpdateFileStructure")]
+    partial class UpdateFileStructure
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -78,10 +80,6 @@ namespace SoftwareDesignProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<byte[]>("FileData")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
@@ -90,11 +88,13 @@ namespace SoftwareDesignProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("FileType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("ID");
 
                     b.ToTable("FileDetails");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("FileDetails");
                 });
 
             modelBuilder.Entity("SoftwareDesignProject.Data.Models.Student", b =>
@@ -151,26 +151,6 @@ namespace SoftwareDesignProject.Migrations
                     b.HasIndex("FakultetiId");
 
                     b.ToTable("Students");
-                });
-
-            modelBuilder.Entity("SoftwareDesignProject.Data.Models.PDF", b =>
-                {
-                    b.HasBaseType("SoftwareDesignProject.Data.Models.FileDetails");
-
-                    b.Property<long>("FileSize")
-                        .HasColumnType("bigint");
-
-                    b.HasDiscriminator().HasValue("PDF");
-                });
-
-            modelBuilder.Entity("SoftwareDesignProject.Data.Models.PNG", b =>
-                {
-                    b.HasBaseType("SoftwareDesignProject.Data.Models.FileDetails");
-
-                    b.Property<DateTime>("DateUploaded")
-                        .HasColumnType("datetime2");
-
-                    b.HasDiscriminator().HasValue("PNG");
                 });
 
             modelBuilder.Entity("SoftwareDesignProject.Data.Models.Aplikimi", b =>

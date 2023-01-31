@@ -16,44 +16,24 @@ namespace SoftwareDesignProject.Controllers
             _uploadService = uploadService;
         }
 
-        
-        [HttpPost("PostSingleFile")]
-        public async Task<ActionResult> PostSingleFile([FromForm] FileUpload fileDetails)
-        {
-            if (fileDetails == null)
-            {
-                return BadRequest();
-            }
 
-            try
-            {
-                await _uploadService.PostFileAsync(fileDetails.FileDetails, fileDetails.FileType);
-                return Ok();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+        [HttpPost("PostSingleFile")]
+        public async Task<IActionResult> PostSingleFile(IFormFile fileData)
+        {
+            if (fileData == null)
+                return BadRequest("File data is null.");
+            if (fileData.Length == 0) return BadRequest("File is empty.");
+           
+           
+            await _uploadService.PostFileAsync(fileData);
+            return Ok("File uploaded successfully.");
         }
 
-      
-        [HttpGet("DownloadFile")]
-        public async Task<ActionResult> DownloadFile(int id)
+        [HttpGet("DownloadFileById")]
+        public async Task<IActionResult> DownloadFileById(int Id)
         {
-            if (id < 1)
-            {
-                return BadRequest();
-            }
-
-            try
-            {
-                await _uploadService.DownloadFileById(id);
-                return Ok();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            await _uploadService.DownloadFileById(Id);
+            return Ok("File downloaded successfully.");
         }
     }
 }

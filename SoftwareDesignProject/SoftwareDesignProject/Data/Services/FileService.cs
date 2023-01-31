@@ -6,7 +6,6 @@ namespace SoftwareDesignProject.Data.Services
 {
     public class FileService : IFileService
     {
-    
         private readonly AppDbContext _context;
 
         public FileService(AppDbContext context)
@@ -14,16 +13,35 @@ namespace SoftwareDesignProject.Data.Services
             _context = context;
         }
 
-        public async Task PostFileAsync(IFormFile fileData, FileType fileType)
+        public async Task PostFileAsync(IFormFile fileData)
         {
             try
             {
-                var fileDetails = new FileDetails()
+                FileDetails fileDetails = null;
+
+                if (fileData.ContentType.Equals("application/pdf"))
                 {
-                    ID = 0,
-                    FileName = fileData.FileName,
-                    FileType = fileType,
-                };
+                    fileDetails = new PDF()
+                    {
+                        ID = 0,
+                        FileName = fileData.FileName,
+                    };
+                    (fileDetails as PDF).SetFileSize(fileData);
+                }
+                else if (fileData.ContentType.Equals("image/png"))
+                {
+                    fileDetails = new PNG()
+                    {
+                        ID = 0,
+                        FileName = fileData.FileName,
+                    };
+                }
+
+                if (fileDetails == null)
+                {
+                    throw new Exception("Unsupported file type.");
+                }
+
 
                 using (var stream = new MemoryStream())
                 {
@@ -45,14 +63,17 @@ namespace SoftwareDesignProject.Data.Services
         {
             try
             {
-                var file = _context.FileDetails.Where(x => x.ID == Id).FirstOrDefaultAsync();
+                var file = await _context.FileDetails.FirstOrDefaultAsync(x => x.ID == Id);
 
-                var content = new System.IO.MemoryStream(file.Result.FileData);
-                var path = Path.Combine(
-                   Directory.GetCurrentDirectory(), "FileDownloaded",
-                   file.Result.FileName);
+                if (file != null)
+                {
+                    var content = new System.IO.MemoryStream(file.FileData);
+                    var path = Path.Combine(
+                        Directory.GetCurrentDirectory(), "FileDownloaded",
+                        file.FileName);
 
-                await CopyStream(content, path);
+                    await CopyStream(content, path);
+                }
             }
             catch (Exception)
             {
@@ -68,4 +89,5 @@ namespace SoftwareDesignProject.Data.Services
             }
         }
     }
+
 }

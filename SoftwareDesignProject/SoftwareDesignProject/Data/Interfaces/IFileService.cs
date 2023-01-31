@@ -5,7 +5,7 @@ namespace SoftwareDesignProject.Data.Interfaces
 
     public interface IFileService
     {
-        public Task PostFileAsync(IFormFile fileData, FileType fileType);
+        public Task PostFileAsync(IFormFile fileData);
 
         public Task DownloadFileById(int fileName);
     }
