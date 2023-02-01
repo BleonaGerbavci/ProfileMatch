@@ -8,6 +8,14 @@
         {
             FileSize = file.Length;
         }
+
+        public override void Modify(IFormFile file)
+        {
+            ID = 0;
+            FileName= file.FileName;
+        }
+
+
     }
 
 }

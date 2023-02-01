@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SoftwareDesignProject.Data;
 using SoftwareDesignProject.Data.Interfaces;
-using SoftwareDesignProject.Data.Repositories;
 using SoftwareDesignProject.Data.Services;
 using SoftwareDesignProject.Services;
 
@@ -34,7 +33,7 @@ builder.Services.AddScoped<IFakultetiService, FakultetiService>();
 builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<IAplikimiService, AplikimiService>();
 builder.Services.AddScoped<IFileService, FileService>();
-builder.Services.AddScoped<MergedDataRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -21,6 +21,8 @@ namespace SoftwareDesignProject.Data.Services
                 //Factory pattern usage
 
                 FileDetails fileDetails = FileFactory.CreateFileDetails(fileData);
+               
+                fileDetails.Modify(fileData);
 
                 if (fileDetails is PDF pdf)
                 {

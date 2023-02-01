@@ -4,10 +4,20 @@ namespace SoftwareDesignProject.Factory
 {
     public class FileFactory
     {
+        // RIP pattern
+        private static Dictionary<string, FileDetails> FilesDictionary =
+            new Dictionary<string, FileDetails>()
+            {
+                {"application/pdf", new PDF() },
+                { "image/png", new PNG()}
+            };
         //factory pattern
         public static FileDetails CreateFileDetails(IFormFile fileData)
         {
-            if (fileData.ContentType.Equals("application/pdf"))
+            return FilesDictionary[fileData.ContentType];
+
+
+           /* if (fileData.ContentType.Equals("application/pdf"))
             {
                 return new PDF()
                 {
@@ -19,7 +29,7 @@ namespace SoftwareDesignProject.Factory
             {
                 return new PNG()
                 {
-                    ID = 0,
+                    ID = 1,
                     FileName = fileData.FileName,
                 };
             }
@@ -27,6 +37,7 @@ namespace SoftwareDesignProject.Factory
             {
                 throw new Exception("Unsupported file type.");
             }
+           */
         }
     }
 }
