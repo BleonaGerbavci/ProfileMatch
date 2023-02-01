@@ -71,10 +71,14 @@ namespace SoftwareDesignProject.Data.Services
         */
 
         public List<Aplikimi> GetAllAplikimet() => 
-                    _context.Aplikimet.Include(a => a.Studenti).ToList();
+                    _context.Aplikimet
+                    .Include(a => a.Studenti)
+                    .Include(a => a.Studenti.Fakulteti)
+                    .ToList();
 
         public Aplikimi GetAplikimiById(int aplikimiId) =>
                        _context.Aplikimet.Include(a => a.Studenti)
+                       .Include(a => a.Studenti.Fakulteti)
                       .FirstOrDefault(n => n.Id == aplikimiId);
 
 
