@@ -1,4 +1,5 @@
-﻿using SoftwareDesignProject.Data.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using SoftwareDesignProject.Data.Interfaces;
 using SoftwareDesignProject.Data.Models;
 using SoftwareDesignProject.Data.ViewModels;
 
@@ -35,9 +36,12 @@ namespace SoftwareDesignProject.Data.Services
             _context.Students.Add(_student);
             _context.SaveChanges();
         }
-        public List<Student> GetAllStudents() => _context.Students.ToList();
+        public List<Student> GetAllStudents() => 
+            _context.Students.Include(x => x.Fakulteti).ToList();
 
-        public Student GetStudentById(int stdId) => _context.Students.FirstOrDefault(n => n.NrLeternjoftimit == stdId);
+        public Student GetStudentById(int stdId) => 
+            _context.Students.Include(x => x.Fakulteti)
+            .FirstOrDefault(n => n.NrLeternjoftimit == stdId);
 
 
         public Student UpdateStudentById(int nrLeternjoftimit, StudentVM student)
