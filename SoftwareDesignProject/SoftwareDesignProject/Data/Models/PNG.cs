@@ -2,13 +2,9 @@
 {
     public class PNG : FileDetails
     {
-        public DateTime DateUploaded { get; set; }
-        
-        public PNG()
-        {
-            DateUploaded = DateTime.Now;
-        }
+        public DateTime DateUploaded { get; set; } = DateTime.Now;
 
+       
     }
   
 }

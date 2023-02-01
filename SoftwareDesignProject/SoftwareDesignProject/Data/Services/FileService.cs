@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SoftwareDesignProject.Data.Interfaces;
 using SoftwareDesignProject.Data.Models;
+using SoftwareDesignProject.Factory;
 
 namespace SoftwareDesignProject.Data.Services
 {
@@ -17,31 +18,14 @@ namespace SoftwareDesignProject.Data.Services
         {
             try
             {
-                FileDetails fileDetails = null;
+                //Factory pattern usage
 
-                if (fileData.ContentType.Equals("application/pdf"))
-                {
-                    fileDetails = new PDF()
-                    {
-                        ID = 0,
-                        FileName = fileData.FileName,
-                    };
-                    (fileDetails as PDF).SetFileSize(fileData);
-                }
-                else if (fileData.ContentType.Equals("image/png"))
-                {
-                    fileDetails = new PNG()
-                    {
-                        ID = 0,
-                        FileName = fileData.FileName,
-                    };
-                }
+                FileDetails fileDetails = FileFactory.CreateFileDetails(fileData);
 
-                if (fileDetails == null)
+                if (fileDetails is PDF pdf)
                 {
-                    throw new Exception("Unsupported file type.");
+                    pdf.SetFileSize(fileData);
                 }
-
 
                 using (var stream = new MemoryStream())
                 {
@@ -58,6 +42,8 @@ namespace SoftwareDesignProject.Data.Services
             }
 
         }
+
+    
 
         public async Task DownloadFileById(int Id)
         {
