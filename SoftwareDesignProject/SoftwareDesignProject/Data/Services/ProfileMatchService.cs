@@ -1,4 +1,5 @@
 ﻿using SoftwareDesignProject.Data.Interfaces;
+using SoftwareDesignProject.Data.Models;
 
 namespace SoftwareDesignProject.Data.Services
 {
@@ -88,5 +89,7 @@ namespace SoftwareDesignProject.Data.Services
 
             return cityPoints;
         }
+
+
     }
 }

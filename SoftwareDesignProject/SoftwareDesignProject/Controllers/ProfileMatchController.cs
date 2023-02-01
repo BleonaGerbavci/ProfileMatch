@@ -1,11 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SoftwareDesignProject.Data;
 using SoftwareDesignProject.Data.Interfaces;
 using SoftwareDesignProject.Data;
 
 namespace SoftwareDesignProject.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class ProfileMatchController : ControllerBase
     {
+     
         private readonly AppDbContext _context;
         private readonly IProfileMatchService _profileMatchService;
 

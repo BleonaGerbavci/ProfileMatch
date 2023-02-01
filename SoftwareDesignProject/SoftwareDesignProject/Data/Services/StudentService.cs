@@ -37,11 +37,10 @@ namespace SoftwareDesignProject.Data.Services
             _context.SaveChanges();
         }
         public List<Student> GetAllStudents() => 
-            _context.Students.Include(x => x.Fakulteti).ToList();
+                _context.Students.Include(f => f.Fakulteti).ToList();
 
         public Student GetStudentById(int stdId) => 
-            _context.Students.Include(x => x.Fakulteti)
-            .FirstOrDefault(n => n.NrLeternjoftimit == stdId);
+                _context.Students.Include(f => f.Fakulteti).FirstOrDefault(n => n.NrLeternjoftimit == stdId);
 
 
         public Student UpdateStudentById(int nrLeternjoftimit, StudentVM student)
