@@ -1,0 +1,29 @@
+.navbar{
+    height: 80px;
+    width: auto;
+    background-color: #BF1A2F;
+    color: white;
+    font-size: 18px ;
+    border: 1px solid #BF1A2F;
+}
+.navbar-links, p{
+   display: flex;
+   justify-content: flex-end;
+   margin-right: 40px;
+   color: white;
+   text-decoration-line: none;
+   margin-top: 10px;
+} 
+
+.butoni-signUp{
+   margin-top: 7px;
+}
+.sign-in-btn{
+    width: 87px;
+    height: 34px;
+    font-size: 16px;
+    border-radius: 13px;
+    color: white;
+    background-color: #161616;
+    border-color: #161616;
+}
