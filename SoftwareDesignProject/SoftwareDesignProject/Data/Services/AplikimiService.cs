@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SoftwareDesignProject.Data.Interfaces;
 using SoftwareDesignProject.Data.Models;
 using SoftwareDesignProject.Data.ViewModels;
@@ -64,14 +65,18 @@ namespace SoftwareDesignProject.Data.Services
                  return "Numri Personal nuk u gjet";
              }
              var _fakulteti = _studenti.Fakulteti;      
-             var _departamenti = _fakulteti.Departamenti;
+             var _departamenti = _fakulteti.Departamenti; //
              return _departamenti;
          }
         */
 
-        public List<Aplikimi> GetAllAplikimet() => _context.Aplikimet.ToList();
+        public List<Aplikimi> GetAllAplikimet() => 
+                    _context.Aplikimet.Include(a => a.Studenti).ToList();
 
-        public Aplikimi GetAplikimiById(int aplikimiId) => _context.Aplikimet.FirstOrDefault(n => n.Id == aplikimiId);
+        public Aplikimi GetAplikimiById(int aplikimiId) =>
+                       _context.Aplikimet.Include(a => a.Studenti)
+                      .FirstOrDefault(n => n.Id == aplikimiId);
+
 
 
         public Aplikimi UpdateAplikiminById(int aplikimiId, AplikimiVM aplikimi)

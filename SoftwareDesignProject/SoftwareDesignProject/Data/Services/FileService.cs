@@ -21,13 +21,8 @@ namespace SoftwareDesignProject.Data.Services
                 //Factory pattern usage
 
                 FileDetails fileDetails = FileFactory.CreateFileDetails(fileData);
-               
-                fileDetails.Modify(fileData);
 
-                if (fileDetails is PDF pdf)
-                {
-                    pdf.SetFileSize(fileData);
-                }
+                fileDetails.Modify(fileData);
 
                 using (var stream = new MemoryStream())
                 {
@@ -45,7 +40,7 @@ namespace SoftwareDesignProject.Data.Services
 
         }
 
-    
+
 
         public async Task DownloadFileById(int Id)
         {

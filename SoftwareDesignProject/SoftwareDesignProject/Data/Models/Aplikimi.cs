@@ -10,7 +10,6 @@
         public Student Studenti { get; set; }
        
 
-
         //public DateTime OpenedDate { get; set; }
         //public DateTime ClosedDate { get; set; }
         //public string ApplicationStatus { get; set; }

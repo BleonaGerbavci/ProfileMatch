@@ -17,27 +17,27 @@ namespace SoftwareDesignProject.Factory
             return FilesDictionary[fileData.ContentType];
 
 
-           /* if (fileData.ContentType.Equals("application/pdf"))
-            {
-                return new PDF()
-                {
-                    ID = 0,
-                    FileName = fileData.FileName,
-                };
-            }
-            else if (fileData.ContentType.Equals("image/png"))
-            {
-                return new PNG()
-                {
-                    ID = 1,
-                    FileName = fileData.FileName,
-                };
-            }
-            else
-            {
-                throw new Exception("Unsupported file type.");
-            }
-           */
+            /* if (fileData.ContentType.Equals("application/pdf"))
+             {
+                 return new PDF()
+                 {
+                     ID = 0,
+                     FileName = fileData.FileName,
+                 };
+             }
+             else if (fileData.ContentType.Equals("image/png"))
+             {
+                 return new PNG()
+                 {
+                     ID = 1,
+                     FileName = fileData.FileName,
+                 };
+             }
+             else
+             {
+                 throw new Exception("Unsupported file type.");
+             }
+            */
         }
     }
 }

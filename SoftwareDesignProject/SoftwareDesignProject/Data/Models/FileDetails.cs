@@ -7,7 +7,7 @@
         public byte[] FileData { get; set; }
 
         public virtual void Modify(IFormFile file) { }
-       
+
     }
 }
 
