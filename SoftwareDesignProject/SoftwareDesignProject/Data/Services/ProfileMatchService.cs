@@ -90,6 +90,37 @@ namespace SoftwareDesignProject.Data.Services
             return cityPoints;
         }
 
+        public int CalculateExtraPoints(string category)
+        {
+            int extraPoints = 0;
+            if (!string.IsNullOrEmpty(category))
+            {
+                switch (category)
+                {
+                    case "Student(femije) i deshmorit":
+                        extraPoints = 10;
+                        break;
+                    case "Student me aftesi te kufizuara":
+                        extraPoints = 6;
+                        break;
+                    case "Student(femije) i prindit invalid te luftes":
+                    case "Student i te pagjeturit":
+                    case "Student invalid civil i luftes":
+                        extraPoints = 5;
+                        break;
+                    case "Student me asistence sociale":
+                    case "Student i prindit martir nga lufta":
+                    case "Student i te burgosurit politik":
+                        extraPoints = 4;
+                        break;
+                    case "Dy e me shume student nga nje familje aplikant ne QS":
+                    case "Student, prindi i te cilit eshte veteran i luftes":
+                        extraPoints = 3;
+                        break;
 
+                }
+            }
+            return extraPoints;
+        }
     }
 }

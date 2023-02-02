@@ -4,5 +4,6 @@
     {
         public int CalculateAverageGradePoints(float averageGrade);
         public int CalculateCityPoints(string city);
+        public int CalculateExtraPoints(string category);
     }
 }

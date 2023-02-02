@@ -37,5 +37,13 @@ namespace SoftwareDesignProject.Controllers
             return Ok(points);
 
         }
+
+        [HttpGet("getExtraPoints/{kategoria}")]
+
+        public IActionResult CalculateExtraPoints(string kategoria)
+        {
+            var points = _profileMatchService.CalculateExtraPoints(kategoria);
+            return Ok(points);
+        }
     }
 }
