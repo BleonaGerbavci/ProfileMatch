@@ -33,6 +33,7 @@ builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<IAplikimiService, AplikimiService>();
 builder.Services.AddScoped<IFileService, FileService>();
 builder.Services.AddScoped<IProfileMatchService, ProfileMatchService>();
+builder.Services.AddScoped<IAnkesaService, AnkesaService>();
 
 var app = builder.Build();
 

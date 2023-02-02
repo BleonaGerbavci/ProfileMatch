@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using SoftwareDesignProject.Data.Interfaces;
 using SoftwareDesignProject.Data.Models;
 using SoftwareDesignProject.Data.ViewModels;
@@ -35,7 +36,7 @@ namespace SoftwareDesignProject.Data.Services
             }
             else
             {
-                averageGradePoints = 1;
+                averageGradePoints = 0;
             }
 
             return averageGradePoints;
@@ -98,24 +99,24 @@ namespace SoftwareDesignProject.Data.Services
             {
                 switch (category)
                 {
-                    case "Student(femije) i deshmorit":
+                    case "Student (femije) i deshmorit":
                         extraPoints = 10;
                         break;
                     case "Student me aftesi te kufizuara":
                         extraPoints = 6;
                         break;
-                    case "Student(femije) i prindit invalid te luftes":
-                    case "Student i te pagjeturit":
+                    case "Student (femije) i prindit invalid te luftes":
+                    case "Student (femije) i te pagjeturit":
                     case "Student invalid civil i luftes":
                         extraPoints = 5;
                         break;
                     case "Student me asistence sociale":
                     case "Student i prindit martir nga lufta":
-                    case "Student i te burgosurit politik":
+                    case "Student i te burgosurit":
                         extraPoints = 4;
                         break;
                     case "Dy e me shume student nga nje familje aplikant ne QS":
-                    case "Student, prindi i te cilit eshte veteran i luftes":
+                    case "Student (femije) i prindit veterean te luftes":
                         extraPoints = 3;
                         break;
                     default:
@@ -127,10 +128,10 @@ namespace SoftwareDesignProject.Data.Services
             return extraPoints;
         }
 
-        public List<ProfileMatch> GetAllMatches() =>
+        /*public List<ProfileMatch> GetAllMatches() =>
                _context.ProfileMatch.Include(a => a.Aplikimi).
                                     Include(a => a.Aplikimi.Studenti).
-                                    Include(a => a.Aplikimi.Studenti.Fakulteti).ToList();
+                                    Include(a => a.Aplikimi.Studenti.Fakulteti).ToList();*/
 
 /*
         public void AutoPopulateProfileMatch()
@@ -177,7 +178,9 @@ namespace SoftwareDesignProject.Data.Services
         
            public List<ProfileMatch> CalculateTotalPointsForAllStudents()
            {
-               var aplikimet = _context.Aplikimet.ToList();
+               var aplikimet = _context.Aplikimet
+                                .Include(s => s.Studenti)
+                                 .ToList();
                foreach (var aplikimi in aplikimet)
                {
 
@@ -187,21 +190,42 @@ namespace SoftwareDesignProject.Data.Services
                     AplikimiId = aplikimi.Id,
                     PointsForGPA = CalculateAverageGradePoints(aplikimi.Studenti.NotaMesatare),
                     PointsForCity = CalculateCityPoints(aplikimi.Studenti.Qyteti),
-                    ExtraPoints = CalculateExtraPoints(aplikimi.SpecialCategoryReason)
-
-                };
-                 
-
-                   profileMatch.TotalPoints = CalculateAverageGradePoints(aplikimi.Studenti.NotaMesatare) +
+                    ExtraPoints = CalculateExtraPoints(aplikimi.SpecialCategoryReason),
+                    TotalPoints = CalculateAverageGradePoints(aplikimi.Studenti.NotaMesatare) +
                                               CalculateCityPoints(aplikimi.Studenti.Qyteti) +
-                                              CalculateExtraPoints(aplikimi.SpecialCategoryReason);
-              
+                                              CalculateExtraPoints(aplikimi.SpecialCategoryReason)
+
+            };
+                 
 
                 _context.ProfileMatch.Add(profileMatch);
                    _context.SaveChanges();
                }
                return _context.ProfileMatch.ToList();
            }
-        
+
+           /* public List<ProfileMatch> CalculateTotalPoints()
+            {
+            var aplikimet = _context.Aplikimet.ToList();
+
+            foreach (var aplikimi in aplikimet)
+            {
+                SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+
+                builder.DataSource = "DESKTOP-0JO8GCJ";
+                builder.InitialCatalog = "profile.m.db";
+
+                using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
+                {
+                    connection.Open();
+
+                    String id = "Select id, from Aplikimi";
+
+                }
+            }
+            }
+           */
+
+       
+        }
     }
-}
