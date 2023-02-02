@@ -15,5 +15,7 @@ namespace SoftwareDesignProject.Data
         public DbSet<FileDetails> FileDetails { get; set; }
         public DbSet<PDF> Pdf { get; set; }
         public DbSet<PNG> Png { get; set; }
+        public DbSet<ProfileMatch> ProfileMatch { get; set; }
+
     }
 }
