@@ -149,13 +149,14 @@ namespace SoftwareDesignProject.Data.Services
 
                     };
 
+
                     profileMatch.TotalPoints = profileMatch.PointsForCity + profileMatch.PointsForGPA + profileMatch.ExtraPoints;
 
-
                     _context.ProfileMatch.Add(profileMatch);
+                   
                 }
-
                 _context.SaveChanges();
+
             }
             return _context.ProfileMatch.ToList();
         }

@@ -72,7 +72,7 @@ namespace SoftwareDesignProject.Controllers
         }
 
         [HttpGet("last10")]
-        public IActionResult Getlast10()
+        public IActionResult GetLast10()
         {
             var last10 = _profileMatchService.GetLast10ProfileMatches();
 
