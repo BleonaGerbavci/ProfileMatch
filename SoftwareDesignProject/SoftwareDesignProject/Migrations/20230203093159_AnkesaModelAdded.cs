@@ -4,7 +4,7 @@
 
 namespace SoftwareDesignProject.Migrations
 {
-    public partial class AddedAnkesaMethods : Migration
+    public partial class AnkesaModelAdded : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

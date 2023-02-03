@@ -14,10 +14,32 @@ namespace SoftwareDesignProject.Controllers
         private readonly AppDbContext _context;
         private readonly IAnkesaService _ankesaService;
 
+
         public AnkesaController(AppDbContext context, IAnkesaService ankesaService)
         {
             _context = context;
             _ankesaService = ankesaService;
+        }
+
+        [HttpPost("add-ankesa")]
+        public IActionResult AddAnkesa([FromBody] AnkesaVM ankesa)
+        {
+            _ankesaService.AddAnkesa(ankesa);
+            return Ok();
+        }
+
+        [HttpGet]
+        public IActionResult GetAllAnkesat()
+        {
+            var ankesat = _ankesaService.GetAllAnkesat();
+            return Ok(ankesat);
+
+        }
+        [HttpGet("get-by-id /{id}")]
+        public IActionResult GetAnkesaById(int id)
+        {
+            var _ankesa = _ankesaService.AnkesaById(id);
+            return Ok(_ankesa);
         }
 
         [HttpPut("update-by-id/{ankesaId}")]
