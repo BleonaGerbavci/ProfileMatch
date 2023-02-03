@@ -9,6 +9,7 @@
         public int ExtraPoints { get; set; }
         public int TotalPoints { get; set; }
         public int AplikimiId { get; set; }
+       
 
 
     }

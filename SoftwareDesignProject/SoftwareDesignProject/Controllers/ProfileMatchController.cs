@@ -48,13 +48,35 @@ namespace SoftwareDesignProject.Controllers
         }
 
         [HttpGet("profilematches")]
-           public ActionResult<IEnumerable<ProfileMatchVM>> GetProfileMatches()
-           {
+        public ActionResult<IEnumerable<ProfileMatchVM>> GetProfileMatches()
+        {
             _profileMatchService.CalculateTotalPointsForAllStudents();
 
-             return Ok(_profileMatchService.CalculateTotalPointsForAllStudents());
-           }
-       
+            return Ok(_profileMatchService.CalculateTotalPointsForAllStudents());
+        }
 
+        [HttpGet("sortedByTotalPoints")]
+        public IActionResult GetSortedProfileMatches()
+        {
+            var sorted = _profileMatchService.SortByTotalPoints();
+
+            return Ok(sorted);
+        }
+
+        [HttpGet("top10")]
+        public IActionResult GetTop10()
+        {
+            var top10 = _profileMatchService.GetTop10ProfileMatches();
+
+            return Ok(top10);
+        }
+
+        [HttpGet("last10")]
+        public IActionResult Getlast10()
+        {
+            var last10 = _profileMatchService.GetLast10ProfileMatches();
+
+            return Ok(last10);
+        }
     }
 }

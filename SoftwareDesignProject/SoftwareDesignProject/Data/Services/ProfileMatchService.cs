@@ -127,53 +127,54 @@ namespace SoftwareDesignProject.Data.Services
             return extraPoints;
         }
 
-       
         public List<ProfileMatch> CalculateTotalPointsForAllStudents()
         {
-
             var aplikimet = _context.Aplikimet
                                  .Include(s => s.Studenti)
                                  .ToList();
 
             foreach (var aplikimi in aplikimet)
             {
+                var profileMatch = _context.ProfileMatch
+                    .FirstOrDefault(p => p.AplikimiId == aplikimi.Id);
 
-
-                var profileMatch = new ProfileMatch()
+                if (profileMatch == null)
                 {
-                    AplikimiId = aplikimi.Id,
-                    PointsForGPA = CalculateAverageGradePoints(aplikimi.Studenti.NotaMesatare),
-                    PointsForCity = CalculateCityPoints(aplikimi.Studenti.Qyteti),
-                    ExtraPoints = CalculateExtraPoints(aplikimi.SpecialCategoryReason)
+                    profileMatch = new ProfileMatch()
+                    {
+                        AplikimiId = aplikimi.Id,
+                        PointsForGPA = CalculateAverageGradePoints(aplikimi.Studenti.NotaMesatare),
+                        PointsForCity = CalculateCityPoints(aplikimi.Studenti.Qyteti),
+                        ExtraPoints = CalculateExtraPoints(aplikimi.SpecialCategoryReason)
 
-                };
+                    };
+
+                    profileMatch.TotalPoints = profileMatch.PointsForCity + profileMatch.PointsForGPA + profileMatch.ExtraPoints;
 
 
-                profileMatch.TotalPoints = profileMatch.PointsForCity + profileMatch.PointsForGPA + profileMatch.ExtraPoints;
+                    _context.ProfileMatch.Add(profileMatch);
+                }
 
-                _context.ProfileMatch.Add(profileMatch);
                 _context.SaveChanges();
             }
             return _context.ProfileMatch.ToList();
-
         }
-   
-        
-        public double notaM(int Id)
-        {
-            StudentService s = new StudentService(_context);
-            var stdId = s.GetStudentById(Id);
 
-            return stdId.NotaMesatare;
-            
+        public List<ProfileMatch> SortByTotalPoints()
+        {
+            return _context.ProfileMatch
+                .OrderByDescending(p => p.TotalPoints)
+                .ToList();
         }
-        public string qytetiPiket(int Id)
+
+        public List<ProfileMatch> GetTop10ProfileMatches()
         {
-            StudentService s = new StudentService(_context);
-            var stdId = s.GetStudentById(Id);
+            return SortByTotalPoints().Take(10).ToList();
+        }
 
-            return stdId.Qyteti;
-
+        public List<ProfileMatch> GetLast10ProfileMatches()
+        {
+            return SortByTotalPoints().TakeLast(10).ToList();
         }
     }
 }
