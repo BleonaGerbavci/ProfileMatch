@@ -69,7 +69,6 @@ export default function GetAplikimet(){
                 <thead>
                     <tr>
                         <th>Id</th>
-                        {/* <th>Is Special Category?</th> */}
                         <th>Special Category</th>
                         <th>Apply Date</th>
                         <th>Numri Personal</th>
@@ -164,12 +163,9 @@ export default function GetAplikimet(){
                                     ))
                                 ))}
                                            
-                            </th>  
-                           
-                      
+                            </th>                    
                       </tr> 
-                       ))}
-                    
+                       ))}    
                 </tbody>
             </table>
         </div>

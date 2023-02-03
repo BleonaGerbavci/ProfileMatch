@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import "./style.css";
-
+import FileUploader from '../FileUpload/FileUploader';
 
 export default function AplikimiCreate(){
     
@@ -105,7 +105,8 @@ export default function AplikimiCreate(){
                 <label className="label-1">Select today date!</label>: ""} 
                 <br/> <br/>
                 
-                <button className="buton-aplikimi"  >Apliko</button>
+                <button className="buton-aplikimi" >Apliko</button>
+
                 
             </form>
         </div>

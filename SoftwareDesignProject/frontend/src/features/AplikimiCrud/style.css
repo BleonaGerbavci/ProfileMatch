@@ -3,8 +3,9 @@
     text-align: center;
     padding: 70px;
   }
+
   
-  form {
+  .form-aplikimi-create{
     display: inline-block;
     background-color: #E3E3E3;
     padding: 20px;
@@ -12,6 +13,7 @@
     width: 500px;
     height: 500px;
     margin-top: 20px;
+    margin-right: 400px;
   }
 
   h4 {

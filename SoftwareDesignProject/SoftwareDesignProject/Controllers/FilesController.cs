@@ -35,6 +35,14 @@ namespace SoftwareDesignProject.Controllers
             await _uploadService.DownloadFileById(Id);
             return Ok("File downloaded successfully.");
         }
+
+        [HttpGet("GetFileById/{id}")]
+
+        public IActionResult GetFileById(int id)
+        {
+            var _file= _uploadService.GetFileById(id);
+            return Ok(_file);
+        }
     }
 }
 

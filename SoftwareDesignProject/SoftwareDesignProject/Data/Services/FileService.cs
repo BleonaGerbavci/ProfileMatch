@@ -71,6 +71,11 @@ namespace SoftwareDesignProject.Data.Services
                 await stream.CopyToAsync(fileStream);
             }
         }
+
+        public FileDetails GetFileById(int fileId)
+        {
+            return _context.FileDetails.FirstOrDefault(s => s.ID == fileId);
+        }
     }
 
 }
