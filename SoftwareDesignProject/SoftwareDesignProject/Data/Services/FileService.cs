@@ -76,6 +76,11 @@ namespace SoftwareDesignProject.Data.Services
         {
             return _context.FileDetails.FirstOrDefault(s => s.ID == fileId);
         }
+
+        public List<FileDetails> GetAll()
+        {
+            return _context.FileDetails.ToList();
+        }
     }
 
 }

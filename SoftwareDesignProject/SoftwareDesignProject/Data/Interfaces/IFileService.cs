@@ -10,5 +10,7 @@ namespace SoftwareDesignProject.Data.Interfaces
         public Task DownloadFileById(int fileName);
 
         public FileDetails GetFileById(int fileId);
+
+        public List<FileDetails> GetAll();
     }
 }

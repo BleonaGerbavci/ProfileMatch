@@ -10,6 +10,7 @@ export default function GetAplikimet(){
     const [studentet, setStudentet] = useState([]);
     const [fakultetet,setFakultetet] = useState([]);
     const [refreshKey,setRefreshKey] = useState(0);
+    const [files, setFiles] = useState([]);
 
     useEffect(() => {
         axios.get('https://localhost:7249/api/Aplikimi')
@@ -39,6 +40,17 @@ export default function GetAplikimet(){
             console.log(error);
         });
     },[refreshKey])
+
+    useEffect(() => {
+        axios.get('https://localhost:7249/api/Files')
+        .then(response => {
+            setFiles(response.data);   
+        }).catch(function(error){
+            console.log(error);
+        });
+    },[refreshKey])
+
+    
 
 
     // function handleDeleteStudent(id) {
@@ -82,7 +94,7 @@ export default function GetAplikimet(){
                         <th>Statusi</th>
                         <th>Drejtimi</th>
                         <th>Departamenti</th>
-                     
+                        <th>File Name</th>
                     </tr>
                 </thead>
 
@@ -163,7 +175,14 @@ export default function GetAplikimet(){
                                     ))
                                 ))}
                                            
-                            </th>                    
+                            </th>           
+
+                                <th>
+                                    {files.map((file) => (
+                                        (aplikimi.fileId == file.id ) ? 
+                                        file.fileName : ""
+                                ))}           
+                            </th>                
                       </tr> 
                        ))}    
                 </tbody>

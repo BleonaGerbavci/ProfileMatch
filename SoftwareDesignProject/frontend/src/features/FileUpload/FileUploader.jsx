@@ -26,7 +26,10 @@ const FileUploader = () => {
   return (
    
     <form className='form-fileUploader' onSubmit={handleSubmit}>
-      <input type="file" onChange={handleFileChange} />
+      <input 
+        type="file" 
+        onChange={handleFileChange} 
+        />
       <button type="submit">Upload</button>
     </form>
   

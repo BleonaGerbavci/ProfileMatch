@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SoftwareDesignProject.Data.Interfaces;
 using SoftwareDesignProject.Data.Models;
+using SoftwareDesignProject.Services;
 
 namespace SoftwareDesignProject.Controllers
 {
@@ -42,6 +43,14 @@ namespace SoftwareDesignProject.Controllers
         {
             var _file= _uploadService.GetFileById(id);
             return Ok(_file);
+        }
+
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var allFiles = _uploadService.GetAll();
+            return Ok(allFiles);
+
         }
     }
 }

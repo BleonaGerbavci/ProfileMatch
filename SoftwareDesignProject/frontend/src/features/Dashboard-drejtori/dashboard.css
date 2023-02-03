@@ -110,7 +110,7 @@
 .konvikti-div{
     border: 1px solid black;
     border-radius: 30px;
-    width: 530px;
+    width: 540px;
     margin-left: 57%;
     margin-top: 29%;
     position: absolute;
@@ -124,13 +124,13 @@
 }
 .konviktet-p p{
     margin-left: 16px;
+    margin-top: 14px;
 }
 .konviktet-gjinia p, .konviktet-fk p{
     border: 1px solid white;
     border-radius: 6px;
     background-color: #E3E3E3;
     color: black;
-
 }
 
 

@@ -14,11 +14,21 @@ export default function AplikimiCreate(){
     const applyDate = Date.now;
     const [refreshKey, setRefreshKey] = useState('0');
     const [error, setError] = useState(false);
-   
+    const [fileId, setFileId] = useState();
+
+    
+    // useEffect(() => {
+    //     axios.get("https://localhost:7249/api/Files/GetFileById?fileId=" + fileId)
+    //     .then(response => {
+    //         setFileId(response.data);
+    //     }).catch(function(error){
+    //         console.log(error);
+    //     });
+    // })
 
     const handleSubmit = (e) => {
         e.preventDefault();   
-        const apliko = {isSpecialCategory,specialCategoryReason,applyDate,studentiNrLeternjoftimit};
+        const apliko = {isSpecialCategory,specialCategoryReason,applyDate,studentiNrLeternjoftimit,fileId};
          // Validimi
         
         if(studentiNrLeternjoftimit == 0){
@@ -38,6 +48,8 @@ export default function AplikimiCreate(){
                 console.log(error);
             });
     }
+
+   
     
 
     return(
@@ -109,6 +121,10 @@ export default function AplikimiCreate(){
 
                 
             </form>
+
+            <div>
+                <FileUploader/>
+            </div>
         </div>
     )
 
