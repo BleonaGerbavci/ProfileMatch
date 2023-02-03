@@ -1,4 +1,6 @@
-﻿namespace SoftwareDesignProject.Data.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace SoftwareDesignProject.Data.Models
 {
     public class Aplikimi
     {
@@ -6,8 +8,15 @@
         public bool isSpecialCategory { get; set; }
         public string? SpecialCategoryReason   { get; set; }
         public DateTime ApplyDate { get; set; }
+
+        [ForeignKey("Studenti")]
         public int StudentiNrLeternjoftimit { get; set; }
         public Student Studenti { get; set; }
+
+        [ForeignKey("FileDetails")]
+        public int FileId { get; set; }
+        public FileDetails FileDetails { get; set; }
+
        
 
         //public DateTime OpenedDate { get; set; }

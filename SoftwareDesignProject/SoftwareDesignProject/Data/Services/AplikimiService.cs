@@ -50,25 +50,14 @@ namespace SoftwareDesignProject.Data.Services
                 isSpecialCategory = aplikimi.isSpecialCategory,
                 SpecialCategoryReason = aplikimi.isSpecialCategory ? aplikimi.SpecialCategoryReason : null,
                 ApplyDate = DateTime.Now,
-                StudentiNrLeternjoftimit = aplikimi.StudentiNrLeternjoftimit
+                StudentiNrLeternjoftimit = aplikimi.StudentiNrLeternjoftimit,
+                FileId = aplikimi.FileId
             };
             _context.Aplikimet.Add(_aplikimi);
             _context.SaveChanges();
 
         }
 
-        /* public string matchFKwithNP(int nrPersonal)
-         {
-             var _studenti = _context.Students.FirstOrDefault(n => n.NrLeternjoftimit == nrPersonal);
-             if(_studenti == null)
-             {
-                 return "Numri Personal nuk u gjet";
-             }
-             var _fakulteti = _studenti.Fakulteti;      
-             var _departamenti = _fakulteti.Departamenti; //
-             return _departamenti;
-         }
-        */
 
         public List<Aplikimi> GetAllAplikimet() =>
                 _context.Aplikimet
@@ -81,6 +70,7 @@ namespace SoftwareDesignProject.Data.Services
                        _context.Aplikimet
                        .Include(a => a.Studenti)
                        .Include(a => a.Studenti.Fakulteti)
+                       .Include(f => f.FileDetails)
                       .FirstOrDefault(n => n.Id == aplikimiId);
 
 
@@ -94,6 +84,7 @@ namespace SoftwareDesignProject.Data.Services
                 _aplikimi.SpecialCategoryReason = aplikimi.SpecialCategoryReason;
                 _aplikimi.ApplyDate = aplikimi.ApplyDate;
                 _aplikimi.StudentiNrLeternjoftimit = aplikimi.StudentiNrLeternjoftimit;
+                _aplikimi.FileId = aplikimi.FileId;
                 
                 _context.SaveChanges();
             }

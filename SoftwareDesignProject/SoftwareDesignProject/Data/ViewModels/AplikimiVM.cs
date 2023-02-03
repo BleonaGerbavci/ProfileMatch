@@ -7,5 +7,6 @@
         public string? SpecialCategoryReason { get; set; }
         public DateTime ApplyDate { get; set; }
         public int StudentiNrLeternjoftimit { get; set; }
+        public int FileId { get; set; }
     }
 }
