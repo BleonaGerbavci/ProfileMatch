@@ -19,9 +19,9 @@ namespace SoftwareDesignProject.Data.Services
         //get student by their personal number
         public Student GetStudentByPersonalNumber(int personalNumber)
         {
-            
-          return _context.Students.FirstOrDefault(s => s.NrLeternjoftimit == personalNumber);
-           
+
+            return _context.Students.FirstOrDefault(s => s.NrLeternjoftimit == personalNumber);
+
         }
 
         // check if the student has already applied
@@ -63,6 +63,7 @@ namespace SoftwareDesignProject.Data.Services
                 _context.Aplikimet
                          .Include(a => a.Studenti)
                          .Include(a => a.Studenti.Fakulteti)
+                         .Include(f => f.FileDetails)
                          .ToList();
 
 
@@ -85,7 +86,7 @@ namespace SoftwareDesignProject.Data.Services
                 _aplikimi.ApplyDate = aplikimi.ApplyDate;
                 _aplikimi.StudentiNrLeternjoftimit = aplikimi.StudentiNrLeternjoftimit;
                 _aplikimi.FileId = aplikimi.FileId;
-                
+
                 _context.SaveChanges();
             }
             return _aplikimi;

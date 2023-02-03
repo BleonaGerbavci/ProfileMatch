@@ -12,8 +12,8 @@ using SoftwareDesignProject.Data;
 namespace SoftwareDesignProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230202185548_UpdateDatabase")]
-    partial class UpdateDatabase
+    [Migration("20230203095726_AplikimiUpdate")]
+    partial class AplikimiUpdate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,23 @@ namespace SoftwareDesignProject.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("SoftwareDesignProject.Data.Models.Ankesa", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Permbajtja")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Ankesat");
+                });
 
             modelBuilder.Entity("SoftwareDesignProject.Data.Models.Aplikimi", b =>
                 {
@@ -35,6 +52,9 @@ namespace SoftwareDesignProject.Migrations
                     b.Property<DateTime>("ApplyDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("FileId")
+                        .HasColumnType("int");
+
                     b.Property<string>("SpecialCategoryReason")
                         .HasColumnType("nvarchar(max)");
 
@@ -45,6 +65,8 @@ namespace SoftwareDesignProject.Migrations
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("FileId");
 
                     b.HasIndex("StudentiNrLeternjoftimit");
 
@@ -207,11 +229,19 @@ namespace SoftwareDesignProject.Migrations
 
             modelBuilder.Entity("SoftwareDesignProject.Data.Models.Aplikimi", b =>
                 {
+                    b.HasOne("SoftwareDesignProject.Data.Models.FileDetails", "FileDetails")
+                        .WithMany()
+                        .HasForeignKey("FileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("SoftwareDesignProject.Data.Models.Student", "Studenti")
                         .WithMany()
                         .HasForeignKey("StudentiNrLeternjoftimit")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("FileDetails");
 
                     b.Navigation("Studenti");
                 });

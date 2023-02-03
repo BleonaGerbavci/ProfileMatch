@@ -6,7 +6,7 @@ namespace SoftwareDesignProject.Data.Models
     {
         public int Id { get; set; }
         public bool isSpecialCategory { get; set; }
-        public string? SpecialCategoryReason   { get; set; }
+        public string? SpecialCategoryReason { get; set; }
         public DateTime ApplyDate { get; set; }
 
         [ForeignKey("Studenti")]
@@ -17,7 +17,7 @@ namespace SoftwareDesignProject.Data.Models
         public int FileId { get; set; }
         public FileDetails FileDetails { get; set; }
 
-       
+
 
         //public DateTime OpenedDate { get; set; }
         //public DateTime ClosedDate { get; set; }

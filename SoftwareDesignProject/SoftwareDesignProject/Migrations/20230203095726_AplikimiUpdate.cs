@@ -4,7 +4,7 @@
 
 namespace SoftwareDesignProject.Migrations
 {
-    public partial class addedFileUploadToTheApplication : Migration
+    public partial class AplikimiUpdate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

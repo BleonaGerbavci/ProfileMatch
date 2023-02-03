@@ -61,11 +61,11 @@
   font-size: smaller;
 }
 
-.table-get-aplikimet, thead,tbody,tr{
+/* .table-get-aplikimet, thead,tbody,tr{
   border: 1px solid #161616;
   border-collapse: collapse;
 
-}
+} */
 .table-get-aplikimet thead{
   background-color: #161616;
   color: white;

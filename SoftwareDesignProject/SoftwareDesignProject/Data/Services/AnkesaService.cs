@@ -12,6 +12,28 @@ namespace SoftwareDesignProject.Data.Services
         {
             _context = context;
         }
+
+       
+        public List<Ankesa> GetAllAnkesat()
+        {
+            return _context.Ankesat.ToList();
+        }
+
+        public Ankesa AnkesaById(int id)
+        {
+            return _context.Ankesat.FirstOrDefault(a => a.Id == id);
+        }
+
+        public void AddAnkesa(AnkesaVM ankesa)
+        {
+            var _ankesa = new Ankesa()
+            {
+                Permbajtja = ankesa.Permbajtja
+            };
+            _context.Ankesat.Add(_ankesa);
+            _context.SaveChanges();
+        }
+
         public void DeleteAnkesa(int ankesaId)
         {
             var _ankesa = _context.Ankesat.FirstOrDefault(n => n.Id == ankesaId);
