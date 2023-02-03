@@ -34,7 +34,6 @@ builder.Services.AddScoped<IAplikimiService, AplikimiService>();
 builder.Services.AddScoped<IFileService, FileService>();
 builder.Services.AddScoped<IProfileMatchService, ProfileMatchService>();
 
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -31,9 +31,7 @@ namespace SoftwareDesignProject.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FileName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FileData = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
-                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FileSize = table.Column<long>(type: "bigint", nullable: true),
-                    DateUploaded = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    FileType = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -75,6 +73,7 @@ namespace SoftwareDesignProject.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    FakultetiId = table.Column<int>(type: "int", nullable: false),
                     isSpecialCategory = table.Column<bool>(type: "bit", nullable: false),
                     SpecialCategoryReason = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ApplyDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -91,38 +90,10 @@ namespace SoftwareDesignProject.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "ProfileMatch",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PointsForGPA = table.Column<int>(type: "int", nullable: false),
-                    PointsForCity = table.Column<int>(type: "int", nullable: false),
-                    ExtraPoints = table.Column<int>(type: "int", nullable: false),
-                    TotalPoints = table.Column<int>(type: "int", nullable: false),
-                    AplikimiId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProfileMatch", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ProfileMatch_Aplikimet_AplikimiId",
-                        column: x => x.AplikimiId,
-                        principalTable: "Aplikimet",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Aplikimet_StudentiNrLeternjoftimit",
                 table: "Aplikimet",
                 column: "StudentiNrLeternjoftimit");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProfileMatch_AplikimiId",
-                table: "ProfileMatch",
-                column: "AplikimiId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Students_FakultetiId",
@@ -133,13 +104,10 @@ namespace SoftwareDesignProject.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "FileDetails");
-
-            migrationBuilder.DropTable(
-                name: "ProfileMatch");
-
-            migrationBuilder.DropTable(
                 name: "Aplikimet");
+
+            migrationBuilder.DropTable(
+                name: "FileDetails");
 
             migrationBuilder.DropTable(
                 name: "Students");

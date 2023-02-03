@@ -1,9 +1,14 @@
-﻿namespace SoftwareDesignProject.Data.Interfaces
+﻿using Microsoft.AspNetCore.Mvc;
+using SoftwareDesignProject.Data.Models;
+
+namespace SoftwareDesignProject.Data.Interfaces
 {
     public interface IProfileMatchService
     {
-        public int CalculateAverageGradePoints(float averageGrade);
+        public int CalculateAverageGradePoints(double averageGrade);
         public int CalculateCityPoints(string city);
         public int CalculateExtraPoints(string category);
+
+        public List<ProfileMatch> CalculateTotalPointsForAllStudents();
     }
 }

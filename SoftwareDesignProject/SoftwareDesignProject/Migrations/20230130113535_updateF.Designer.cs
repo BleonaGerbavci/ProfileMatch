@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SoftwareDesignProject.Data;
 
@@ -11,9 +12,10 @@ using SoftwareDesignProject.Data;
 namespace SoftwareDesignProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230130113535_updateF")]
+    partial class updateF
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -90,41 +92,15 @@ namespace SoftwareDesignProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("FileType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("ID");
 
                     b.ToTable("FileDetails");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("FileDetails");
-                });
-
-            modelBuilder.Entity("SoftwareDesignProject.Data.Models.ProfileMatch", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("AplikimiId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ExtraPoints")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PointsForCity")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PointsForGPA")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TotalPoints")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AplikimiId");
-
-                    b.ToTable("ProfileMatch");
                 });
 
             modelBuilder.Entity("SoftwareDesignProject.Data.Models.Student", b =>
@@ -155,8 +131,8 @@ namespace SoftwareDesignProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("NotaMesatare")
-                        .HasColumnType("float");
+                    b.Property<float>("NotaMesatare")
+                        .HasColumnType("real");
 
                     b.Property<int>("NumriKontaktues")
                         .HasColumnType("int");
@@ -212,17 +188,6 @@ namespace SoftwareDesignProject.Migrations
                         .IsRequired();
 
                     b.Navigation("Studenti");
-                });
-
-            modelBuilder.Entity("SoftwareDesignProject.Data.Models.ProfileMatch", b =>
-                {
-                    b.HasOne("SoftwareDesignProject.Data.Models.Aplikimi", "Aplikimi")
-                        .WithMany()
-                        .HasForeignKey("AplikimiId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Aplikimi");
                 });
 
             modelBuilder.Entity("SoftwareDesignProject.Data.Models.Student", b =>

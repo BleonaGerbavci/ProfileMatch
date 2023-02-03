@@ -1,5 +1,7 @@
-﻿using SoftwareDesignProject.Data.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using SoftwareDesignProject.Data.Interfaces;
 using SoftwareDesignProject.Data.Models;
+using SoftwareDesignProject.Data.ViewModels;
 
 namespace SoftwareDesignProject.Data.Services
 {
@@ -12,10 +14,9 @@ namespace SoftwareDesignProject.Data.Services
             _context = context;
         }
 
-        public int CalculateAverageGradePoints(float averageGrade)
+        public int CalculateAverageGradePoints(double averageGrade)
         {
-           int averageGradePoints = 0;
-
+            int averageGradePoints;
             if (averageGrade >= 6.00 && averageGrade <= 6.99)
             {
                 averageGradePoints = 1;
@@ -34,7 +35,7 @@ namespace SoftwareDesignProject.Data.Services
             }
             else
             {
-                averageGradePoints = 0;
+                averageGradePoints = 1;
             }
 
             return averageGradePoints;
@@ -117,10 +118,90 @@ namespace SoftwareDesignProject.Data.Services
                     case "Student, prindi i te cilit eshte veteran i luftes":
                         extraPoints = 3;
                         break;
+                    default:
+                        extraPoints = 0;
+                        break;
 
                 }
             }
             return extraPoints;
         }
+
+        public List<ProfileMatch> GetAllMatches() =>
+               _context.ProfileMatch.Include(a => a.Aplikimi).
+                                    Include(a => a.Aplikimi.Studenti).
+                                    Include(a => a.Aplikimi.Studenti.Fakulteti).ToList();
+
+/*
+        public void AutoPopulateProfileMatch()
+        {
+            var aplikime = _context.Aplikimet.ToList();
+
+            foreach (var aplikimi in aplikime)
+            {
+                var profileMatch = new ProfileMatch
+                {
+                    PointsForGPA = CalculateAverageGradePoints(aplikimi.Studenti.NotaMesatare),
+                    PointsForCity = CalculateCityPoints(aplikimi.Studenti.Qyteti),
+                    ExtraPoints = CalculateExtraPoints(aplikimi.SpecialCategoryReason),
+                    TotalPoints = CalculateAverageGradePoints(aplikimi.Studenti.NotaMesatare) + CalculateCityPoints(aplikimi.Studenti.Qyteti)
+                        + CalculateExtraPoints(aplikimi.SpecialCategoryReason),
+                    AplikimiId = aplikimi.Id
+                };
+
+                _context.ProfileMatch.Add(profileMatch);
+            }
+
+            _context.SaveChanges();
+        }
+*/
+        
+
+        /*  public void AddProfileMatch(ProfileMatch profileMatch)
+          {
+              var _profileMatch = new ProfileMatch
+              {
+                  PointsForGPA = CalculateAverageGradePoints(profileMatch.Aplikimi.Studenti.NotaMesatare),
+                  PointsForCity = CalculateCityPoints(profileMatch.Aplikimi.Studenti.Qyteti),
+                  ExtraPoints = CalculateExtraPoints(profileMatch.Aplikimi.SpecialCategoryReason),
+                  TotalPoints = CalculateAverageGradePoints(profileMatch.Aplikimi.Studenti.NotaMesatare) + CalculateCityPoints(profileMatch.Aplikimi.Studenti.Qyteti)
+                  + CalculateExtraPoints(profileMatch.Aplikimi.SpecialCategoryReason),
+                  AplikimiId = profileMatch.AplikimiId
+              };
+
+              _context.ProfileMatch.Add(profileMatch);
+              _context.SaveChanges();
+          }
+
+          */
+        
+           public List<ProfileMatch> CalculateTotalPointsForAllStudents()
+           {
+               var aplikimet = _context.Aplikimet.ToList();
+               foreach (var aplikimi in aplikimet)
+               {
+
+                
+                var profileMatch = new ProfileMatch()
+                {
+                    AplikimiId = aplikimi.Id,
+                    PointsForGPA = CalculateAverageGradePoints(aplikimi.Studenti.NotaMesatare),
+                    PointsForCity = CalculateCityPoints(aplikimi.Studenti.Qyteti),
+                    ExtraPoints = CalculateExtraPoints(aplikimi.SpecialCategoryReason)
+
+                };
+                 
+
+                   profileMatch.TotalPoints = CalculateAverageGradePoints(aplikimi.Studenti.NotaMesatare) +
+                                              CalculateCityPoints(aplikimi.Studenti.Qyteti) +
+                                              CalculateExtraPoints(aplikimi.SpecialCategoryReason);
+              
+
+                _context.ProfileMatch.Add(profileMatch);
+                   _context.SaveChanges();
+               }
+               return _context.ProfileMatch.ToList();
+           }
+        
     }
 }
