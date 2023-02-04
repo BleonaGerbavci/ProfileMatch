@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SoftwareDesignProject.Data;
 
@@ -11,9 +12,10 @@ using SoftwareDesignProject.Data;
 namespace SoftwareDesignProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230204004716_ListaAdded")]
+    partial class ListaAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -119,22 +121,6 @@ namespace SoftwareDesignProject.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("FileDetails");
                 });
 
-            modelBuilder.Entity("SoftwareDesignProject.Data.Models.ListaEAplikanteve", b =>
-                {
-                    b.Property<int>("NumriRendor")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NumriRendor"), 1L, 1);
-
-                    b.Property<int>("TotalApplicants")
-                        .HasColumnType("int");
-
-                    b.HasKey("NumriRendor");
-
-                    b.ToTable("ListaEAplikanteve");
-                });
-
             modelBuilder.Entity("SoftwareDesignProject.Data.Models.ProfileMatch", b =>
                 {
                     b.Property<int>("Id")
@@ -149,9 +135,6 @@ namespace SoftwareDesignProject.Migrations
                     b.Property<int>("ExtraPoints")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ListaEAplikanteveNumriRendor")
-                        .HasColumnType("int");
-
                     b.Property<int>("PointsForCity")
                         .HasColumnType("int");
 
@@ -164,8 +147,6 @@ namespace SoftwareDesignProject.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AplikimiId");
-
-                    b.HasIndex("ListaEAplikanteveNumriRendor");
 
                     b.ToTable("ProfileMatch");
                 });
@@ -273,10 +254,6 @@ namespace SoftwareDesignProject.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SoftwareDesignProject.Data.Models.ListaEAplikanteve", null)
-                        .WithMany("ProfileMatches")
-                        .HasForeignKey("ListaEAplikanteveNumriRendor");
-
                     b.Navigation("Aplikimi");
                 });
 
@@ -289,11 +266,6 @@ namespace SoftwareDesignProject.Migrations
                         .IsRequired();
 
                     b.Navigation("Fakulteti");
-                });
-
-            modelBuilder.Entity("SoftwareDesignProject.Data.Models.ListaEAplikanteve", b =>
-                {
-                    b.Navigation("ProfileMatches");
                 });
 #pragma warning restore 612, 618
         }

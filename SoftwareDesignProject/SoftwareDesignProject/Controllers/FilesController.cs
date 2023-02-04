@@ -24,8 +24,8 @@ namespace SoftwareDesignProject.Controllers
             if (fileData == null)
                 return BadRequest("File data is null.");
             if (fileData.Length == 0) return BadRequest("File is empty.");
-           
-           
+
+
             await _uploadService.PostFileAsync(fileData);
             return Ok("File uploaded successfully.");
         }
@@ -41,7 +41,7 @@ namespace SoftwareDesignProject.Controllers
 
         public IActionResult GetFileById(int id)
         {
-            var _file= _uploadService.GetFileById(id);
+            var _file = _uploadService.GetFileById(id);
             return Ok(_file);
         }
 

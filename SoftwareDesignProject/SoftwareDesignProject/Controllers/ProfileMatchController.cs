@@ -54,7 +54,13 @@ namespace SoftwareDesignProject.Controllers
 
              return Ok(_profileMatchService.CalculateTotalPointsForAllStudents());
            }
-       
 
+        [HttpGet("sortedByTotalPoints")]
+        public IActionResult GetSortedProfileMatches()
+        {
+            var sorted = _profileMatchService.SortByTotalPoints();
+
+            return Ok(sorted);
+        }
     }
 }

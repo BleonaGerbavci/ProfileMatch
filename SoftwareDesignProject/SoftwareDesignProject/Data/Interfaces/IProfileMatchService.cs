@@ -8,7 +8,7 @@ namespace SoftwareDesignProject.Data.Interfaces
         public int CalculateAverageGradePoints(double averageGrade);
         public int CalculateCityPoints(string city);
         public int CalculateExtraPoints(string category);
-
         public List<ProfileMatch> CalculateTotalPointsForAllStudents();
+        public List<ProfileMatch> SortByTotalPoints();
     }
 }
