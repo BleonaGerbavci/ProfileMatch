@@ -10,5 +10,6 @@ namespace SoftwareDesignProject.Data.Interfaces
         public int CalculateExtraPoints(string category);
         public List<ProfileMatch> CalculateTotalPointsForAllStudents();
         public List<ProfileMatch> SortByTotalPoints();
+        public List<ProfileMatch> GetTop10ProfileMatches();
     }
 }

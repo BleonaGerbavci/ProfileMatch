@@ -146,9 +146,11 @@ namespace SoftwareDesignProject.Data.Services
                         PointsForGPA = CalculateAverageGradePoints(aplikimi.Studenti.NotaMesatare),
                         PointsForCity = CalculateCityPoints(aplikimi.Studenti.Qyteti),
                         ExtraPoints = CalculateExtraPoints(aplikimi.SpecialCategoryReason)
+                  
                     };
 
                     profileMatch.TotalPoints = profileMatch.PointsForCity + profileMatch.PointsForGPA + profileMatch.ExtraPoints;
+                    
 
                     _context.ProfileMatch.Add(profileMatch);
                 }
@@ -163,6 +165,11 @@ namespace SoftwareDesignProject.Data.Services
             return _context.ProfileMatch
                 .OrderByDescending(p => p.TotalPoints)
                 .ToList();
+        }
+
+        public List<ProfileMatch> GetTop10ProfileMatches()
+        {
+            return SortByTotalPoints().Take(10).ToList();
         }
 
     }

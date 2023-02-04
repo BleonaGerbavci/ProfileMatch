@@ -62,5 +62,13 @@ namespace SoftwareDesignProject.Controllers
 
             return Ok(sorted);
         }
+
+        [HttpGet("top10")]
+        public IActionResult GetTop10()
+        {
+            var top10 = _profileMatchService.GetTop10ProfileMatches();
+
+            return Ok(top10);
+        }
     }
 }

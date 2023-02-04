@@ -1,4 +1,6 @@
-﻿namespace SoftwareDesignProject.Data.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace SoftwareDesignProject.Data.Models
 {
     public class ProfileMatch
     {
@@ -11,5 +13,8 @@
         //navigation properties
         public int AplikimiId { get; set; }
         public Aplikimi Aplikimi { get; set; }
+
+      
+
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SoftwareDesignProject.Data;
 
@@ -11,9 +12,10 @@ using SoftwareDesignProject.Data;
 namespace SoftwareDesignProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230204043000_Updateee")]
+    partial class Updateee
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -119,6 +121,28 @@ namespace SoftwareDesignProject.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("FileDetails");
                 });
 
+            modelBuilder.Entity("SoftwareDesignProject.Data.Models.ListaEAplikanteve", b =>
+                {
+                    b.Property<int>("NumriRendor")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NumriRendor"), 1L, 1);
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TotalApplicants")
+                        .HasColumnType("int");
+
+                    b.HasKey("NumriRendor");
+
+                    b.ToTable("ListaEAplikanteve");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("ListaEAplikanteve");
+                });
+
             modelBuilder.Entity("SoftwareDesignProject.Data.Models.ProfileMatch", b =>
                 {
                     b.Property<int>("Id")
@@ -133,6 +157,9 @@ namespace SoftwareDesignProject.Migrations
                     b.Property<int>("ExtraPoints")
                         .HasColumnType("int");
 
+                    b.Property<int>("ListaEAplikanteveId")
+                        .HasColumnType("int");
+
                     b.Property<int>("PointsForCity")
                         .HasColumnType("int");
 
@@ -145,6 +172,8 @@ namespace SoftwareDesignProject.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AplikimiId");
+
+                    b.HasIndex("ListaEAplikanteveId");
 
                     b.ToTable("ProfileMatch");
                 });
@@ -205,6 +234,20 @@ namespace SoftwareDesignProject.Migrations
                     b.ToTable("Students");
                 });
 
+            modelBuilder.Entity("SoftwareDesignProject.Data.Models.ListaEPritjes", b =>
+                {
+                    b.HasBaseType("SoftwareDesignProject.Data.Models.ListaEAplikanteve");
+
+                    b.HasDiscriminator().HasValue("ListaEPritjes");
+                });
+
+            modelBuilder.Entity("SoftwareDesignProject.Data.Models.ListaETePranuarve", b =>
+                {
+                    b.HasBaseType("SoftwareDesignProject.Data.Models.ListaEAplikanteve");
+
+                    b.HasDiscriminator().HasValue("ListaETePranuarve");
+                });
+
             modelBuilder.Entity("SoftwareDesignProject.Data.Models.PDF", b =>
                 {
                     b.HasBaseType("SoftwareDesignProject.Data.Models.FileDetails");
@@ -252,7 +295,15 @@ namespace SoftwareDesignProject.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("SoftwareDesignProject.Data.Models.ListaEAplikanteve", "ListaEAplikanteve")
+                        .WithMany("ProfileMatches")
+                        .HasForeignKey("ListaEAplikanteveId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Aplikimi");
+
+                    b.Navigation("ListaEAplikanteve");
                 });
 
             modelBuilder.Entity("SoftwareDesignProject.Data.Models.Student", b =>
@@ -264,6 +315,11 @@ namespace SoftwareDesignProject.Migrations
                         .IsRequired();
 
                     b.Navigation("Fakulteti");
+                });
+
+            modelBuilder.Entity("SoftwareDesignProject.Data.Models.ListaEAplikanteve", b =>
+                {
+                    b.Navigation("ProfileMatches");
                 });
 #pragma warning restore 612, 618
         }

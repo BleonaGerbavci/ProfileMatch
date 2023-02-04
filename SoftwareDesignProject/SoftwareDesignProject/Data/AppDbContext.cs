@@ -17,6 +17,8 @@ namespace SoftwareDesignProject.Data
         public DbSet<PNG> Png { get; set; }
         public DbSet<ProfileMatch> ProfileMatch { get; set; }
         public DbSet<Ankesa> Ankesat { get; set; }
-        public DbSet<ListaEAplikanteve> ListaEAplikanteve { get; set; }
+ 
+
+
     }
 }
