@@ -10,6 +10,7 @@ import Lista from './features/Lista/Lista';
 import Footer from './components/footer';
 import AnkesaAdd from './features/Ankesa/AnkesaAdd';
 import GetAnkesat from './features/Ankesa/GetAnkesat';
+import ListaEPritjes from './features/Lista/ListaEPritjes';
 
 function App(){
   return (
@@ -24,6 +25,7 @@ function App(){
                 <Route path='/Lista' element={<Lista/>} />
                 <Route path='/AnkesaAdd' element={<AnkesaAdd/>} />
                 <Route path='/GetAnkesat' element={<GetAnkesat/>} />
+                <Route path='/ListaPritjes' element={<ListaEPritjes/>} />
 
             
             </Routes>

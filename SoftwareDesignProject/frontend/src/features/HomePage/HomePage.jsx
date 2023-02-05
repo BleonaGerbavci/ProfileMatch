@@ -24,6 +24,9 @@ export default function HomePage()
                 <Link to=".">
                    Udhezuesi per pagesa
                 </Link>
+                <Link to="../ListaPritjes">
+                   Lista e pritjes
+                </Link>
             </div>
 
             <div className='njoftimet'>

@@ -32,6 +32,7 @@ export default function AnkesaAdd(){
 
     return (
         <>
+        <h2>Paraqisni një ankesë</h2>
         <form className="form-containerA" onSubmit={handleAdd}>
             <input
             id="personal-number"

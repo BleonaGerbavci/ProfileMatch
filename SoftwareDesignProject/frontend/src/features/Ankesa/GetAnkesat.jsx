@@ -31,12 +31,12 @@ export default function GetAnkesat(){
   function RefuzoAnkesen(id) {
     const confirmBox = window.confirm(
         "A jeni te sigurte qe deshironi te refuzoni ankesen me id " + id  +"?  " 
-    )
+    );
     if (confirmBox === true) {
         axios.delete('https://localhost:7249/api/Ankesa/delete-ankesa?id=' + id)
             .then(() => {
                 setRefreshKey(refreshKey => refreshKey + 1)
-            })
+            });
     }
     else {
         console.log("Process of deleting an ankese canceled !!");

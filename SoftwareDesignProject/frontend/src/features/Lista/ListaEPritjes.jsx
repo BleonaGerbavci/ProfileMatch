@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./ListaStyle.css";
 
-export default function Table(){
+export default function ListaEPritjes(){
 
   const [aplikimet,setAplikimet] = useState([]);
     const [studentet, setStudentet] = useState([]);
@@ -40,7 +40,7 @@ export default function Table(){
     },[refreshKey])
 
     useEffect(() => {
-        axios.get('https://localhost:7249/api/ProfileMatch/top10')
+        axios.get('https://localhost:7249/api/ProfileMatch/last10')
         .then(response => {
             setProfileMatches(response.data);   
         }).catch(function(error){
@@ -51,7 +51,7 @@ export default function Table(){
  
   return(
   <>
-  <h2>Lista e te pranuarve</h2>
+  <h2>Lista e pritjes</h2>
   <div className="table-containerT">
     <table className="tableT">
       <thead>
