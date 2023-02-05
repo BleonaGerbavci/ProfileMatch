@@ -19,40 +19,45 @@ namespace SoftwareDesignProject.Data.Services
         {
             var _drejtori = new Drejtori()
             {
-                Id = drejtori.Id,
+                
                 Emri = drejtori.Emri,
                 Mbiemri = drejtori.Mbiemri,
                 Vendlindja = drejtori.Vendlindja,
                 NumriTelefonit = drejtori.NumriTelefonit,
                 AnkesaId = drejtori.AnkesaId
             };
-            _context.Drejtori.Add(_drejtori);
+            _context.Drejtoret.Add(_drejtori);
             _context.SaveChanges();
         }
 
         public void DeleteDrejtori(int Id)
         {
-            var _drejtori = _context.Drejtori.FirstOrDefault(e => e.Id == Id);
+            var _drejtori = _context.Drejtoret.FirstOrDefault(e => e.Id == Id);
             if (_drejtori != null)
             {
-                _context.Drejtori.Remove(_drejtori);
+                _context.Drejtoret.Remove(_drejtori);
                 _context.SaveChanges();
             }
         }
 
+        public List<Drejtori> GetAll()
+        {
+            return _context.Drejtoret.ToList();
+        }
+
+       
         public Drejtori DrejtoriById(int Id)
         {
-            return _context.Drejtori.FirstOrDefault(d => d.Id == Id);
+            return _context.Drejtoret.FirstOrDefault(d => d.Id == Id);
 
         }
 
         public Drejtori UpdateDrejtori(int Id, DrejtoriVM drejtori)
         {
-            var _drejtori = _context.Drejtori.FirstOrDefault(e => e.Id == Id);
+            var _drejtori = _context.Drejtoret.FirstOrDefault(e => e.Id == Id);
             if (_drejtori != null)
             {
-                _drejtori.Id = drejtori.Id;
-                _drejtori.Id = drejtori.Id;
+                
                 _drejtori.Emri = drejtori.Emri;
                 _drejtori.Mbiemri = drejtori.Mbiemri;
                 _drejtori.Vendlindja = drejtori.Vendlindja;
@@ -64,15 +69,15 @@ namespace SoftwareDesignProject.Data.Services
             return _drejtori;
         }
 
-        
+
     }
 }
 
 
-   
 
-    
 
-   
+
+
+
 
 

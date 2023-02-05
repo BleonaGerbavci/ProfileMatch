@@ -16,7 +16,7 @@ export default function Navbar()
                 <Link to="./HomePage">
                     <p>Home</p>
                 </Link>
-                <Link to=".">
+                <Link to="./AnkesaAdd">
                    <p>Ankesa</p> 
                 </Link>
                 

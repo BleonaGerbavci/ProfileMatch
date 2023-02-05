@@ -6,8 +6,10 @@ import GetAplikimet from './features/AplikimiCrud/aplikimi-get';
 import FileUploader from './features/FileUpload/FileUploader';
 import HomePage from './features/HomePage/HomePage';
 import Dashboard from './features/Dashboard-drejtori/Dashboard';
-import Lista from './features/Listaa/Lista';
+import Lista from './features/Lista/Lista';
 import Footer from './components/footer';
+import AnkesaAdd from './features/Ankesa/AnkesaAdd';
+import GetAnkesat from './features/Ankesa/GetAnkesat';
 
 function App(){
   return (
@@ -20,9 +22,12 @@ function App(){
                 <Route path='/HomePage' element={<HomePage/>} />
                 <Route path='/Dashboard' element={<Dashboard/>} />
                 <Route path='/Lista' element={<Lista/>} />
+                <Route path='/AnkesaAdd' element={<AnkesaAdd/>} />
+                <Route path='/GetAnkesat' element={<GetAnkesat/>} />
 
             
             </Routes>
+            
             
     
     </div>

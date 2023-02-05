@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import "./style.css";
 import FileUploader from '../FileUpload/FileUploader';
+import Footer from "../../components/footer";
 
 export default function AplikimiCreate(){
     
@@ -125,6 +126,7 @@ export default function AplikimiCreate(){
             <div>
                 <FileUploader/>
             </div>
+            <Footer/>
         </div>
     )
 

@@ -63,7 +63,7 @@ export default function Dashboard(){
 
         <div className="Ankesat">
             <div className="img-ankesat">
-                <Link to='/Ankesat'>
+                <Link to='/GetAnkesat'>
                     <img src={Ankesat} />
                 </Link>
                 <p>Ankesat</p>

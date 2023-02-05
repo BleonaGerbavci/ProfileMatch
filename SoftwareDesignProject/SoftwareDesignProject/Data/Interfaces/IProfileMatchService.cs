@@ -11,6 +11,6 @@ namespace SoftwareDesignProject.Data.Interfaces
         public List<ProfileMatch> CalculateTotalPointsForAllStudents();
         public List<ProfileMatch> SortByTotalPoints();
         public List<ProfileMatch> GetTop10ProfileMatches();
-        public List<ProfileMatch> GetLast10ProfileMatches();
+        public List<ProfileMatch> GetLastProfileMatches();
     }
 }

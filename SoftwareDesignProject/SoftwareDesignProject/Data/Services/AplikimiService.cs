@@ -7,7 +7,7 @@ using SoftwareDesignProject.Exceptions;
 
 namespace SoftwareDesignProject.Data.Services
 {
-    public class AplikimiService : IAplikimiService 
+    public class AplikimiService : IAplikimiService
     {
         private readonly AppDbContext _context;
 

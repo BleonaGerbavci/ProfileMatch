@@ -5,12 +5,13 @@
         public int Id { get; set; }
         public string? Emri { get; set; }
         public string? Mbiemri { get; set; }
-        public string Vendlindja {get; set;}
+        public string Vendlindja { get; set; }
         public int NumriTelefonit { get; set; }
-        public Ankesa Ankesa { get; set; }
 
+        //navigation props
         public int AnkesaId { get; set; }
+        public Ankesa Ankesa { get; set; }
+        
 
-        //public ListaETePranuarve ListaETePranuarve { get; set; }
     }
 }

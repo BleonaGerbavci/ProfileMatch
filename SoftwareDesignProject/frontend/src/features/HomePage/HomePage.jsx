@@ -5,6 +5,7 @@ import Ankesa from './complaint.png';
 import AplikimiCreate from '../AplikimiCrud/aplikimi-create';
 import Lista from './list.png';
 import Konkursi from './application.png';
+import Footer from '../../components/footer';
 
 export default function HomePage()
 {
@@ -46,6 +47,7 @@ export default function HomePage()
                 </div>
 
             </div>
+            <Footer/>
         </div>
     )
 }

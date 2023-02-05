@@ -34,7 +34,12 @@ namespace SoftwareDesignProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("StudentiNrLeternjoftimit")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("StudentiNrLeternjoftimit");
 
                     b.ToTable("Ankesat");
                 });
@@ -69,6 +74,37 @@ namespace SoftwareDesignProject.Migrations
                     b.HasIndex("StudentiNrLeternjoftimit");
 
                     b.ToTable("Aplikimet");
+                });
+
+            modelBuilder.Entity("SoftwareDesignProject.Data.Models.Drejtori", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AnkesaId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Emri")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Mbiemri")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NumriTelefonit")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Vendlindja")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AnkesaId");
+
+                    b.ToTable("Drejtoret");
                 });
 
             modelBuilder.Entity("SoftwareDesignProject.Data.Models.Fakulteti", b =>
@@ -225,6 +261,17 @@ namespace SoftwareDesignProject.Migrations
                     b.HasDiscriminator().HasValue("PNG");
                 });
 
+            modelBuilder.Entity("SoftwareDesignProject.Data.Models.Ankesa", b =>
+                {
+                    b.HasOne("SoftwareDesignProject.Data.Models.Student", "Studenti")
+                        .WithMany()
+                        .HasForeignKey("StudentiNrLeternjoftimit")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Studenti");
+                });
+
             modelBuilder.Entity("SoftwareDesignProject.Data.Models.Aplikimi", b =>
                 {
                     b.HasOne("SoftwareDesignProject.Data.Models.FileDetails", "FileDetails")
@@ -242,6 +289,17 @@ namespace SoftwareDesignProject.Migrations
                     b.Navigation("FileDetails");
 
                     b.Navigation("Studenti");
+                });
+
+            modelBuilder.Entity("SoftwareDesignProject.Data.Models.Drejtori", b =>
+                {
+                    b.HasOne("SoftwareDesignProject.Data.Models.Ankesa", "Ankesa")
+                        .WithMany()
+                        .HasForeignKey("AnkesaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ankesa");
                 });
 
             modelBuilder.Entity("SoftwareDesignProject.Data.Models.ProfileMatch", b =>
