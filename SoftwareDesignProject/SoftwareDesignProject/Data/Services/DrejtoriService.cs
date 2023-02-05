@@ -19,7 +19,12 @@ namespace SoftwareDesignProject.Data.Services
         {
             var _drejtori = new Drejtori()
             {
-                Id = drejtori.Id
+                Id = drejtori.Id,
+                Emri = drejtori.Emri,
+                Mbiemri = drejtori.Mbiemri,
+                Vendlindja = drejtori.Vendlindja,
+                NumriTelefonit = drejtori.NumriTelefonit,
+                AnkesaId = drejtori.AnkesaId
             };
             _context.Drejtori.Add(_drejtori);
             _context.SaveChanges();
@@ -47,16 +52,19 @@ namespace SoftwareDesignProject.Data.Services
             if (_drejtori != null)
             {
                 _drejtori.Id = drejtori.Id;
+                _drejtori.Id = drejtori.Id;
+                _drejtori.Emri = drejtori.Emri;
+                _drejtori.Mbiemri = drejtori.Mbiemri;
+                _drejtori.Vendlindja = drejtori.Vendlindja;
+                _drejtori.NumriTelefonit = drejtori.NumriTelefonit;
+                _drejtori.AnkesaId = drejtori.AnkesaId;
 
                 _context.SaveChanges();
             }
             return _drejtori;
         }
 
-        Ankesa IDrejtoriService.UpdateDrejtori(int Id, DrejtoriVM drejtori)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }
 

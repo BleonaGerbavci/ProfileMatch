@@ -9,7 +9,7 @@ namespace SoftwareDesignProject.Data.Interfaces
         public  Drejtori DrejtoriById(int Id);
         public void AddDrejtori(DrejtoriVM drejtori);
         public void DeleteDrejtori(int Id);
-        public Ankesa UpdateDrejtori(int Id, DrejtoriVM drejtori);
+        public Drejtori UpdateDrejtori(int Id, DrejtoriVM drejtori);
 
     
         //public List<Lista> AddToLista();
