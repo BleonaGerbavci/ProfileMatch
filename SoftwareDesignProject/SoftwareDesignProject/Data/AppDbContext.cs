@@ -20,6 +20,7 @@ namespace SoftwareDesignProject.Data
         public DbSet<Ankesa> Ankesat { get; set; }
 
         public DbSet<Drejtori> Drejtori { get; set; }
-        
+        public DbSet<User> Users => Set<User>();
+
     }
 }
