@@ -33,7 +33,7 @@ namespace SoftwareDesignProject.Data.Services
 
 
 
-        public void AddAplikimi(AplikimiVM aplikimi)
+        public async Task AddAplikimi(IFormFile fileData, AplikimiVM aplikimi)
         {
             var student = GetStudentByPersonalNumber(aplikimi.StudentiNrLeternjoftimit);
             if (student == null)
@@ -45,18 +45,24 @@ namespace SoftwareDesignProject.Data.Services
             {
                 throw new StudentAlreadyAppliedException("You have already applied.");
             }
+
+            FileService f = new(_context);
+            var fileAplikimi = await f.PostFileAsync(fileData);
+
             var _aplikimi = new Aplikimi()
             {
                 isSpecialCategory = aplikimi.isSpecialCategory,
                 SpecialCategoryReason = aplikimi.isSpecialCategory ? aplikimi.SpecialCategoryReason : null,
                 ApplyDate = DateTime.Now,
                 StudentiNrLeternjoftimit = aplikimi.StudentiNrLeternjoftimit,
-                FileId = aplikimi.FileId
+                FileId = fileAplikimi.ID
             };
             _context.Aplikimet.Add(_aplikimi);
-            _context.SaveChanges();
-
+            await _context.SaveChangesAsync();
         }
+
+
+
 
 
         public List<Aplikimi> GetAllAplikimet() =>
@@ -92,14 +98,17 @@ namespace SoftwareDesignProject.Data.Services
             return _aplikimi;
         }
 
-        public void DeleteAplikimi(int id)
+        public async Task<ActionResult> DeleteAplikimi(int id)
         {
             var _aplikimi = _context.Aplikimet.FirstOrDefault(x => x.Id == id);
             if (_aplikimi != null)
             {
                 _context.Aplikimet.Remove(_aplikimi);
                 _context.SaveChanges();
+                return new OkObjectResult("Aplikimi u fshi me sukses");
+
             }
+            return new NotFoundObjectResult("Aplikimi nuk ekziston");       
         }
     }
 }

@@ -18,11 +18,11 @@ namespace SoftwareDesignProject.Controllers
         }
 
         [HttpPost("add-aplikimi")]
-        public IActionResult AddAplikimi(AplikimiVM aplikimi)
+        public async Task<IActionResult> AddAplikimi(IFormFile fileData, AplikimiVM aplikimi)
         {
             try
             {
-                _aplikimiService.AddAplikimi(aplikimi);
+                await _aplikimiService.AddAplikimi(fileData, aplikimi);
                 return Ok("Application submitted successfully.");
             }
             catch (StudentNotFoundException ex)
@@ -59,10 +59,11 @@ namespace SoftwareDesignProject.Controllers
         }
 
         [HttpDelete("delete-aplikimi/{id}")]
-        public IActionResult DeleteAplikimi(int id)
+        public async Task<ActionResult> DeleteAplikimi(int id)
         {
-            _aplikimiService.DeleteAplikimi(id);
-            return Ok();
+
+           return await _aplikimiService.DeleteAplikimi(id);
+           
         }
 
     }

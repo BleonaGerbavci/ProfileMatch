@@ -21,11 +21,5 @@ namespace SoftwareDesignProject.Data
 
 
 
-<<<<<<< HEAD
-        public DbSet<Drejtori> Drejtori { get; set; }
-        public DbSet<User> Users => Set<User>();
-
-=======
->>>>>>> 7219ee218e7e21a43a03ffd34e5a1d3be3b08dfc
     }
 }

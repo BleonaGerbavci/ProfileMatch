@@ -7,7 +7,7 @@
         public string EmriIPrindit { get; set; }
         public string Mbiemri { get; set; }
         public string Qyteti { get; set; }
-        public float NotaMesatare { get; set; }
+        public double NotaMesatare { get; set; }
         public int NumriKontaktues { get; set; }
         public string Email { get; set; }
         public char Gjinia { get; set; }

@@ -25,10 +25,17 @@ namespace SoftwareDesignProject.Controllers
                 return BadRequest("File data is null.");
             if (fileData.Length == 0) return BadRequest("File is empty.");
 
-
-            await _uploadService.PostFileAsync(fileData);
-            return Ok("File uploaded successfully.");
+            try
+            {
+                FileDetails fileDetails = await _uploadService.PostFileAsync(fileData);
+                return Ok(fileDetails);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while uploading the file.");
+            }
         }
+
 
         [HttpGet("DownloadFileById")]
         public async Task<IActionResult> DownloadFileById(int Id)

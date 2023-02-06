@@ -14,7 +14,7 @@ namespace SoftwareDesignProject.Data.Services
             _context = context;
         }
 
-        public async Task PostFileAsync(IFormFile fileData)
+        public async Task<FileDetails> PostFileAsync(IFormFile fileData)
         {
             try
             {
@@ -32,6 +32,7 @@ namespace SoftwareDesignProject.Data.Services
 
                 var result = _context.FileDetails.Add(fileDetails);
                 await _context.SaveChangesAsync();
+                return fileDetails;
             }
             catch (Exception)
             {

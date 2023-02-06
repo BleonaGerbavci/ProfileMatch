@@ -131,6 +131,7 @@ namespace SoftwareDesignProject.Data.Services
         {
             var aplikimet = _context.Aplikimet
                                  .Include(s => s.Studenti)
+                                 .Include(f => f.Studenti.Fakulteti)
                                  .ToList();
 
             foreach (var aplikimi in aplikimet)
@@ -163,7 +164,9 @@ namespace SoftwareDesignProject.Data.Services
 
         public List<ProfileMatch> SortByTotalPoints()
         {
-            return _context.ProfileMatch
+            return _context.ProfileMatch.Include(a=> a.Aplikimi)
+                                 .Include(s => s.Aplikimi.Studenti)
+                                 .Include(f => f.Aplikimi.Studenti.Fakulteti)                
                 .OrderByDescending(p => p.TotalPoints)
                 .ToList();
         }
