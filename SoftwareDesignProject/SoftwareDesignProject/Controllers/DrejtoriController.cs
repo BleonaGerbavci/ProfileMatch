@@ -28,7 +28,7 @@ namespace SoftwareDesignProject.Controllers
             return Ok();
         }
         [HttpGet]
-        public IActionResult GetAllDretoret()
+        public IActionResult GetAllDrejtoret()
         {
             var drejtoret = _drejtoriService.GetAll();
             return Ok(drejtoret);
@@ -58,7 +58,7 @@ namespace SoftwareDesignProject.Controllers
             return Ok();
         }
 
-
+   
     }
 
 }

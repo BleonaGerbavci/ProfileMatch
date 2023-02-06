@@ -8,7 +8,7 @@ namespace SoftwareDesignProject.Data.ViewModels
         public string? Mbiemri { get; set; }
         public string Vendlindja { get; set; }
         public int NumriTelefonit { get; set; }
-        public int AnkesaId { get; set; }
+ 
 
         //public ListaETePranuarve ListaETePranuarve { get; set; }
     }

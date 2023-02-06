@@ -48,7 +48,10 @@ export default function HomePage()
                     <p>Lista e rezultateve 22/23</p>
                     <p>Hapet konkursi per aplikim <br/> per vitin 2022/23</p>
                 </div>
-
+           
+            </div>
+            <div className='footeri-home-page'>
+            <Footer/>
             </div>
             <Footer/>
         </div>

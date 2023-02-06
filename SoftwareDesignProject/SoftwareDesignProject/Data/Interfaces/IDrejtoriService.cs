@@ -13,6 +13,6 @@ namespace SoftwareDesignProject.Data.Interfaces
         public Drejtori UpdateDrejtori(int Id, DrejtoriVM drejtori);
 
 
-        //public List<Lista> AddToLista();
+   
     }
 }

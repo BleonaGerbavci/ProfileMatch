@@ -8,6 +8,7 @@
     margin-left: 60px;
     margin-top: 70px;
     position: absolute;
+    border-radius: 15px;
 }
 
 .left-black-div{
@@ -15,6 +16,7 @@
     background-color: #161616;
     width: 200px;
     padding-top: 20px;
+    border-radius: 15px;
 }
 .left-black-div p{
     color: white;
@@ -25,6 +27,7 @@
 }
 .right-white-div p{
     color: black;
+    font-size: smaller;
 }
 .right-white-div div{
    border: 1px solid #161616;
@@ -53,7 +56,7 @@
     margin-left: 62%;
     margin-top: 70px;
     position: absolute;
-    border-radius: 50px;
+    border-radius: 30px;
 }
 .left-total-div{
     border-bottom: 3px solid white;
@@ -131,6 +134,9 @@
     border-radius: 6px;
     background-color: #E3E3E3;
     color: black;
+}
+.footer-dashboard{
+    padding-top: 780px;
 }
 
 

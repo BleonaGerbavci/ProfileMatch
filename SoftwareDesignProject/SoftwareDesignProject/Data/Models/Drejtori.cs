@@ -9,9 +9,7 @@
         public int NumriTelefonit { get; set; }
 
         //navigation props
-        public int AnkesaId { get; set; }
-        public Ankesa Ankesa { get; set; }
-        
+      
 
     }
 }

@@ -6,6 +6,7 @@ import Applications from './resume.png';
 import Ankesat from './bad-review.png';
 import { Link } from "react-router-dom";
 import './dashboard.css'
+import Footer from "../../components/footer";
 
 export default function Dashboard(){
 
@@ -102,10 +103,11 @@ export default function Dashboard(){
                 <p>Fakulteti: Mjekesi</p>
                 <p>Fakulteti: FEFS,Bujqesi,Mjekesi</p>
                 <p>Fakulteti: Mjekesi</p>
-            </div>
+            </div>        
         </div>
-        
-        
+        <div className="footer-dashboard">
+                <Footer/>
+            </div>
     </div>
     )
 }

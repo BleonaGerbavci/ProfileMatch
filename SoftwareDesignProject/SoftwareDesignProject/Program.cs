@@ -36,7 +36,6 @@ builder.Services.AddScoped<IProfileMatchService, ProfileMatchService>();
 builder.Services.AddScoped<IAnkesaService, AnkesaService>();
 builder.Services.AddScoped<IDrejtoriService, DrejtoriService>();
 
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

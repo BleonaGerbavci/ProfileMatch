@@ -1,4 +1,3 @@
-
 import Footer from "../../components/footer";
 import "./AnkesaStyle.css"
 import { React,  useState } from 'react';

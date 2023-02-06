@@ -1,8 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SoftwareDesignProject.Data.Interfaces;
+﻿using SoftwareDesignProject.Data.Interfaces;
 using SoftwareDesignProject.Data.Models;
 using SoftwareDesignProject.Data.ViewModels;
-using System.Linq;
 
 namespace SoftwareDesignProject.Data.Services
 {
@@ -19,12 +17,11 @@ namespace SoftwareDesignProject.Data.Services
         {
             var _drejtori = new Drejtori()
             {
-                
                 Emri = drejtori.Emri,
-                Mbiemri = drejtori.Mbiemri,
+                Mbiemri= drejtori.Mbiemri,
                 Vendlindja = drejtori.Vendlindja,
-                NumriTelefonit = drejtori.NumriTelefonit,
-                AnkesaId = drejtori.AnkesaId
+                NumriTelefonit = drejtori.NumriTelefonit
+               
             };
             _context.Drejtoret.Add(_drejtori);
             _context.SaveChanges();
@@ -40,16 +37,14 @@ namespace SoftwareDesignProject.Data.Services
             }
         }
 
-        public List<Drejtori> GetAll()
-        {
-            return _context.Drejtoret.ToList();
-        }
-
-       
         public Drejtori DrejtoriById(int Id)
         {
             return _context.Drejtoret.FirstOrDefault(d => d.Id == Id);
 
+        }
+        public List<Drejtori> GetAll()
+        {
+            return _context.Drejtoret.ToList();
         }
 
         public Drejtori UpdateDrejtori(int Id, DrejtoriVM drejtori)
@@ -57,27 +52,16 @@ namespace SoftwareDesignProject.Data.Services
             var _drejtori = _context.Drejtoret.FirstOrDefault(e => e.Id == Id);
             if (_drejtori != null)
             {
-                
                 _drejtori.Emri = drejtori.Emri;
                 _drejtori.Mbiemri = drejtori.Mbiemri;
                 _drejtori.Vendlindja = drejtori.Vendlindja;
                 _drejtori.NumriTelefonit = drejtori.NumriTelefonit;
-                _drejtori.AnkesaId = drejtori.AnkesaId;
 
                 _context.SaveChanges();
             }
             return _drejtori;
         }
 
-
+     
     }
 }
-
-
-
-
-
-
-
-
-

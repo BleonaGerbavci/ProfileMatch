@@ -55,7 +55,7 @@ namespace SoftwareDesignProject.Migrations
                     b.Property<DateTime>("ApplyDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("FileId")
+                    b.Property<int?>("FileId")
                         .HasColumnType("int");
 
                     b.Property<string>("SpecialCategoryReason")
@@ -276,9 +276,7 @@ namespace SoftwareDesignProject.Migrations
                 {
                     b.HasOne("SoftwareDesignProject.Data.Models.FileDetails", "FileDetails")
                         .WithMany()
-                        .HasForeignKey("FileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("FileId");
 
                     b.HasOne("SoftwareDesignProject.Data.Models.Student", "Studenti")
                         .WithMany()

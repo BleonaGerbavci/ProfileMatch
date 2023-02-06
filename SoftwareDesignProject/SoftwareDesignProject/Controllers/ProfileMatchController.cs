@@ -71,8 +71,8 @@ namespace SoftwareDesignProject.Controllers
             return Ok(top10);
         }
 
-        [HttpGet("last10")]
-        public IActionResult GetLast10()
+        [HttpGet("getLastProfileMatches")]
+        public IActionResult GetLast()
         {
             var last10 = _profileMatchService.GetLastProfileMatches();
 

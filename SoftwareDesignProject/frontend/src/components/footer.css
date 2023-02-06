@@ -1,6 +1,8 @@
 .footer{
     padding: 40px 0;
     background-color: #BF1A2F;
+    position: absolute;
+    width: 100%;
 }
 
 .footer .social {

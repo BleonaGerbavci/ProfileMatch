@@ -14,10 +14,8 @@ namespace SoftwareDesignProject.Data.Services
             _context = context;
         }
 
-
-     
         public List<Ankesa> GetAllAnkesat() => _context.Ankesat.Include(a => a.Studenti).ToList();
-        
+
 
         public Ankesa AnkesaById(int id)
         {
@@ -30,7 +28,7 @@ namespace SoftwareDesignProject.Data.Services
             {
                 Permbajtja = ankesa.Permbajtja,
                 StudentiNrLeternjoftimit = ankesa.StudentiNrLeternjoftimit
-                
+
             };
             _context.Ankesat.Add(_ankesa);
             _context.SaveChanges();
@@ -51,7 +49,7 @@ namespace SoftwareDesignProject.Data.Services
             var _ankesa = _context.Ankesat.FirstOrDefault(n => n.Id == ankesaId);
             if (_ankesa != null)
             {
-                
+
                 _ankesa.Permbajtja = ankesa.Permbajtja;
                 _ankesa.StudentiNrLeternjoftimit = ankesa.StudentiNrLeternjoftimit;
 
@@ -61,4 +59,4 @@ namespace SoftwareDesignProject.Data.Services
             return _ankesa;
         }
     }
-}
+} 

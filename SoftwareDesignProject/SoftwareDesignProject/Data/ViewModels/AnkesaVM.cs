@@ -2,8 +2,9 @@
 {
     public class AnkesaVM
     {
-        
-        public string Permbajtja { get; set; }
         public int StudentiNrLeternjoftimit { get; set; }
+        public string Permbajtja { get; set; }
+
+        //public string ListaPritjesId { get; set; }
     }
 }

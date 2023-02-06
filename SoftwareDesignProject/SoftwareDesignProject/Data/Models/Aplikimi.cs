@@ -14,7 +14,7 @@ namespace SoftwareDesignProject.Data.Models
         public Student Studenti { get; set; }
 
         [ForeignKey("FileDetails")]
-        public int FileId { get; set; }
+        public int ? FileId { get; set; }
         public FileDetails FileDetails { get; set; }
 
 

@@ -19,7 +19,5 @@ namespace SoftwareDesignProject.Data
         public DbSet<Ankesa> Ankesat { get; set; }
         public DbSet<Drejtori> Drejtoret { get; set; }
 
-
-
     }
 }

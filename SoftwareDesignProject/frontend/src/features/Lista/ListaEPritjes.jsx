@@ -40,7 +40,7 @@ export default function ListaEPritjes(){
     },[refreshKey])
 
     useEffect(() => {
-        axios.get('https://localhost:7249/api/ProfileMatch/last10')
+        axios.get('https://localhost:7249/api/ProfileMatch/getLastProfileMatches')
         .then(response => {
             setProfileMatches(response.data);   
         }).catch(function(error){

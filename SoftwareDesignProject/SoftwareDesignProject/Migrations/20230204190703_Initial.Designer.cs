@@ -12,8 +12,8 @@ using SoftwareDesignProject.Data;
 namespace SoftwareDesignProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230202023541_AddProfileMatchModel")]
-    partial class AddProfileMatchModel
+    [Migration("20230204190703_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,28 @@ namespace SoftwareDesignProject.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("SoftwareDesignProject.Data.Models.Ankesa", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Permbajtja")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StudentiNrLeternjoftimit")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StudentiNrLeternjoftimit");
+
+                    b.ToTable("Ankesat");
+                });
 
             modelBuilder.Entity("SoftwareDesignProject.Data.Models.Aplikimi", b =>
                 {
@@ -35,6 +57,9 @@ namespace SoftwareDesignProject.Migrations
                     b.Property<DateTime>("ApplyDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("FileId")
+                        .HasColumnType("int");
+
                     b.Property<string>("SpecialCategoryReason")
                         .HasColumnType("nvarchar(max)");
 
@@ -46,9 +71,42 @@ namespace SoftwareDesignProject.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("FileId");
+
                     b.HasIndex("StudentiNrLeternjoftimit");
 
                     b.ToTable("Aplikimet");
+                });
+
+            modelBuilder.Entity("SoftwareDesignProject.Data.Models.Drejtori", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AnkesaId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Emri")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Mbiemri")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NumriTelefonit")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Vendlindja")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AnkesaId");
+
+                    b.ToTable("Drejtoret");
                 });
 
             modelBuilder.Entity("SoftwareDesignProject.Data.Models.Fakulteti", b =>
@@ -99,6 +157,36 @@ namespace SoftwareDesignProject.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("FileDetails");
                 });
 
+            modelBuilder.Entity("SoftwareDesignProject.Data.Models.ProfileMatch", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AplikimiId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ExtraPoints")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PointsForCity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PointsForGPA")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalPoints")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AplikimiId");
+
+                    b.ToTable("ProfileMatch");
+                });
+
             modelBuilder.Entity("SoftwareDesignProject.Data.Models.Student", b =>
                 {
                     b.Property<int>("NrLeternjoftimit")
@@ -127,8 +215,8 @@ namespace SoftwareDesignProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("NotaMesatare")
-                        .HasColumnType("real");
+                    b.Property<double>("NotaMesatare")
+                        .HasColumnType("float");
 
                     b.Property<int>("NumriKontaktues")
                         .HasColumnType("int");
@@ -175,7 +263,7 @@ namespace SoftwareDesignProject.Migrations
                     b.HasDiscriminator().HasValue("PNG");
                 });
 
-            modelBuilder.Entity("SoftwareDesignProject.Data.Models.Aplikimi", b =>
+            modelBuilder.Entity("SoftwareDesignProject.Data.Models.Ankesa", b =>
                 {
                     b.HasOne("SoftwareDesignProject.Data.Models.Student", "Studenti")
                         .WithMany()
@@ -184,6 +272,47 @@ namespace SoftwareDesignProject.Migrations
                         .IsRequired();
 
                     b.Navigation("Studenti");
+                });
+
+            modelBuilder.Entity("SoftwareDesignProject.Data.Models.Aplikimi", b =>
+                {
+                    b.HasOne("SoftwareDesignProject.Data.Models.FileDetails", "FileDetails")
+                        .WithMany()
+                        .HasForeignKey("FileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SoftwareDesignProject.Data.Models.Student", "Studenti")
+                        .WithMany()
+                        .HasForeignKey("StudentiNrLeternjoftimit")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FileDetails");
+
+                    b.Navigation("Studenti");
+                });
+
+            modelBuilder.Entity("SoftwareDesignProject.Data.Models.Drejtori", b =>
+                {
+                    b.HasOne("SoftwareDesignProject.Data.Models.Ankesa", "Ankesa")
+                        .WithMany()
+                        .HasForeignKey("AnkesaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ankesa");
+                });
+
+            modelBuilder.Entity("SoftwareDesignProject.Data.Models.ProfileMatch", b =>
+                {
+                    b.HasOne("SoftwareDesignProject.Data.Models.Aplikimi", "Aplikimi")
+                        .WithMany()
+                        .HasForeignKey("AplikimiId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Aplikimi");
                 });
 
             modelBuilder.Entity("SoftwareDesignProject.Data.Models.Student", b =>

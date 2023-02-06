@@ -92,8 +92,8 @@ export default function GetAplikimet(){
                         <th>Viti i Studimeve</th>
                         <th>Nota Mesatare</th>
                         <th>Statusi</th>
-                        <th>Drejtimi</th>
-                        <th>Departamenti</th>
+                        <th>Fakulteti</th>
+                        <th>Programi</th>
                         <th>File Name</th>
                     </tr>
                 </thead>

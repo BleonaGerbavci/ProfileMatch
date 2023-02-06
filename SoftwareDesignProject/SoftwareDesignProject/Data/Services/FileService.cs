@@ -14,13 +14,15 @@ namespace SoftwareDesignProject.Data.Services
             _context = context;
         }
 
-        public async Task<FileDetails> PostFileAsync(IFormFile fileData)
+        public async Task PostFileAsync(IFormFile fileData)
         {
             try
             {
                 //Factory pattern usage
 
                 FileDetails fileDetails = FileFactory.CreateFileDetails(fileData);
+
+                // Rip pattern usage
 
                 fileDetails.Modify(fileData);
 
@@ -32,7 +34,6 @@ namespace SoftwareDesignProject.Data.Services
 
                 var result = _context.FileDetails.Add(fileDetails);
                 await _context.SaveChangesAsync();
-                return fileDetails;
             }
             catch (Exception)
             {

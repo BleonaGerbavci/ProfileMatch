@@ -41,7 +41,7 @@ export default function AplikimiCreate(){
         console.log(apliko)
             axios.post('https://localhost:7249/api/Aplikimi/add-aplikimi', apliko)
             .then(() => {
-                toast.success("Ju aplikuat me sukses!", {theme:"colored"})
+                window.alert('Ankesa u shtua me sukses!');
             })
             .then(() => {
                 setRefreshKey(refreshKey => refreshKey + 1)
@@ -56,6 +56,7 @@ export default function AplikimiCreate(){
     return(
         <div className="aplikimi-container">
 
+            <div className="div-aplikimet">
             <h3>Faqja Zyrtare e Aplikimit</h3>
             <form onSubmit={handleSubmit} className="form-aplikimi-create">
                 <br/>
@@ -94,7 +95,6 @@ export default function AplikimiCreate(){
                     defaultValue={specialCategoryReason}
                     className="category-reason"
                     >
-                    
                         <option value="Zgjedh Kategorine" onChange={(e) => setSpecialCategoryReason(e.target.value)}>Zgjedh Kategorine</option>
                         <option value="Student (femije) i deshmorit" onChange={(e) => setSpecialCategoryReason(e.target.value)} >Student (femije) i deshmorit</option>
                         <option value="Student (femije) i prindit invalid te luftes" onChange={(e) => setSpecialCategoryReason(e.target.value)} >Student (femije) i prindit invalid te luftes</option>
@@ -111,19 +111,14 @@ export default function AplikimiCreate(){
 
                 <input 
                     type="date" 
-                    defaultValue={Date.now}
-                />
-                <br/>
-                    {error ? 
-                <label className="label-1">Select today date!</label>: ""} 
-                <br/> <br/>
-                
-                <button className="buton-aplikimi" >Apliko</button>
-
-                
+                    defaultValue={Date.now}/> <br/>
+                {error ? 
+                <label className="label-1">Select today date!</label>: ""}  <br/> <br/>
+                <button className="buton-aplikimi" >Apliko</button>  
             </form>
+            </div>
 
-            <div>
+            <div className="file-uploader">
                 <FileUploader/>
             </div>
             <Footer/>
