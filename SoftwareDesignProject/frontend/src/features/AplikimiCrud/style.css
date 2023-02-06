@@ -20,11 +20,18 @@
   }
   
   input[type="text"], input[type="date"], input[type="number"] {
-    padding: 13px;
-    margin-bottom: 20px;
-    width: 300px;
-    border-radius: 10px;
-    border: 1px solid gray;
+    margin-right: 30px;
+        border: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background: #f2f2f2;
+        width: 250px;
+        padding: 12px;
+        border-radius: 30px;
+        font-size: 0.8rem;
+        margin-bottom: 1rem;
+        outline: none;
   }
   .category-reason{
     padding: 13px;
@@ -66,7 +73,7 @@
 }
 
 .table-get-aplikimet, thead,tbody,tr{
-  border: 1px solid #161616;
+ 
   border-collapse: collapse;
 
 }
@@ -81,16 +88,16 @@
   font-weight: normal;
 
 }
-::-webkit-scrollbar
+/*::-webkit-scrollbar
 {
   width: 7px;
 }
 ::-webkit-scrollbar-thumb
 {
-  background: #BF1A2F;
+  background: #d8cacb;
   border-radius: 6px;
 } 
-/* .delete-img{
+ .delete-img{
   width: 30px;
   height: 30px;
 }

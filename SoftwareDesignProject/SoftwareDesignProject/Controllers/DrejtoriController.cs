@@ -13,7 +13,7 @@ namespace SoftwareDesignProject.Controllers
     {
         private readonly AppDbContext _context;
         private readonly IDrejtoriService _drejtoriService;
-       
+
 
         public DrejtoriController(AppDbContext context, IDrejtoriService drejtoriService)
         {
@@ -27,7 +27,13 @@ namespace SoftwareDesignProject.Controllers
             _drejtoriService.AddDrejtori(drejtori);
             return Ok();
         }
+        [HttpGet]
+        public IActionResult GetAllDretoret()
+        {
+            var drejtoret = _drejtoriService.GetAll();
+            return Ok(drejtoret);
 
+        }
 
 
         [HttpGet("get-by-id /{id}")]

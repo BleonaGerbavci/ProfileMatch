@@ -5,7 +5,9 @@
         public int Id { get; set; }
         public string Permbajtja { get; set; }
 
-        // public string ListaPritjesId { get; set; }
-        //public ListaPritjes ListaPritjes { get; set; }
+
+        //navigation properties
+        public int StudentiNrLeternjoftimit { get; set; }
+        public Student Studenti { get; set; }
     }
 }

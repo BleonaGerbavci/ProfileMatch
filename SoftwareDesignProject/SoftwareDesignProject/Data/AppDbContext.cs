@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SoftwareDesignProject.Data.Models;
 
-
 namespace SoftwareDesignProject.Data
 {
     public class AppDbContext : DbContext
@@ -18,9 +17,15 @@ namespace SoftwareDesignProject.Data
         public DbSet<PNG> Png { get; set; }
         public DbSet<ProfileMatch> ProfileMatch { get; set; }
         public DbSet<Ankesa> Ankesat { get; set; }
+        public DbSet<Drejtori> Drejtoret { get; set; }
 
+
+
+<<<<<<< HEAD
         public DbSet<Drejtori> Drejtori { get; set; }
         public DbSet<User> Users => Set<User>();
 
+=======
+>>>>>>> 7219ee218e7e21a43a03ffd34e5a1d3be3b08dfc
     }
 }

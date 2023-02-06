@@ -6,6 +6,10 @@
     font-size: 18px ;
     border: 1px solid #BF1A2F;
 }
+
+.navbar-links a{
+    text-decoration: none;
+ } 
 .navbar-links, p{
    display: flex;
    justify-content: flex-end;
@@ -15,15 +19,28 @@
    margin-top: 10px;
 } 
 
+
 .butoni-signUp{
    margin-top: 7px;
 }
 .sign-in-btn{
-    width: 87px;
-    height: 34px;
-    font-size: 16px;
-    border-radius: 13px;
-    color: white;
+    border:none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 0.5rem;
     background-color: #161616;
-    border-color: #161616;
+    border-radius: 30px;
+    margin-right: 20px;
+    color: #ffffff;
+    font-size: 0.85rem;
+    width: 100px;
+    height: 40px;
+    transition: all 0.2s ease-in-out;
+}
+  
+  .sign-in-btn:hover {
+    background-color: #070707;
+    cursor: pointer;
 }

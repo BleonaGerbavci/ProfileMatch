@@ -14,7 +14,7 @@ namespace SoftwareDesignProject.Data.Models
         public int AplikimiId { get; set; }
         public Aplikimi Aplikimi { get; set; }
 
-
+      
 
     }
 }

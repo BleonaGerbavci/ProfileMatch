@@ -153,7 +153,7 @@ namespace SoftwareDesignProject.Data.Services
                     profileMatch.TotalPoints = profileMatch.PointsForCity + profileMatch.PointsForGPA + profileMatch.ExtraPoints;
 
                     _context.ProfileMatch.Add(profileMatch);
-                   
+
                 }
                 _context.SaveChanges();
 
@@ -173,9 +173,9 @@ namespace SoftwareDesignProject.Data.Services
             return SortByTotalPoints().Take(10).ToList();
         }
 
-        public List<ProfileMatch> GetLast10ProfileMatches()
+        public List<ProfileMatch> GetLastProfileMatches()
         {
-            return SortByTotalPoints().TakeLast(10).ToList();
+            return SortByTotalPoints().Skip(10).ToList();
         }
     }
 }
