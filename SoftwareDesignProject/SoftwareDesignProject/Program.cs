@@ -35,6 +35,7 @@ builder.Services.AddScoped<IFileService, FileService>();
 builder.Services.AddScoped<IProfileMatchService, ProfileMatchService>();
 builder.Services.AddScoped<IAnkesaService, AnkesaService>();
 builder.Services.AddScoped<IDrejtoriService, DrejtoriService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 
 var app = builder.Build();

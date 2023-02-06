@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SoftwareDesignProject.Data;
+using SoftwareDesignProject.Data.Interfaces;
 using SoftwareDesignProject.Data.Models;
+using SoftwareDesignProject.Data.ViewModels;
 using System.Security.Cryptography;
 
 namespace SoftwareDesignProject.Controllers
@@ -11,6 +13,8 @@ namespace SoftwareDesignProject.Controllers
     public class UserController : ControllerBase
     {
         private readonly AppDbContext _context;
+        private readonly IUserService _userService;
+
 
         public UserController(AppDbContext context)
         {
@@ -140,6 +144,40 @@ namespace SoftwareDesignProject.Controllers
         private string CreateRandomToken()
         {
             return Convert.ToHexString(RandomNumberGenerator.GetBytes(64));
+        }
+
+
+
+
+
+
+        [HttpPost("add-user")]
+        public IActionResult AddUser([FromBody] UserVM user)
+        {
+            _userService.AddUser(user);
+            return Ok();
+        }
+
+   
+        [HttpGet("get-by-id /{id}")]
+        public IActionResult GetUserById(int Id)
+        {
+            var _user = _userService.UserById(Id);
+            return Ok(_user);
+        }
+
+        [HttpPut("update-by-id/{userId}")]
+        public IActionResult UpdateUser(int userId, [FromBody] UserVM user)
+        {
+            var updatedUser = _userService.UpdateUser(userId, user);
+            return Ok(updatedUser);
+        }
+
+        [HttpDelete("delete-user/{id}")]
+        public IActionResult DeleteUser(int id)
+        {
+            _userService.DeleteUser(id);
+            return Ok();
         }
     }
 }
