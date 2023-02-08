@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SoftwareDesignProject.Data;
 
 #nullable disable
 
@@ -84,9 +83,6 @@ namespace SoftwareDesignProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AnkesaId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Emri")
                         .HasColumnType("nvarchar(max)");
 
@@ -101,8 +97,6 @@ namespace SoftwareDesignProject.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AnkesaId");
 
                     b.ToTable("Drejtoret");
                 });
@@ -287,17 +281,6 @@ namespace SoftwareDesignProject.Migrations
                     b.Navigation("FileDetails");
 
                     b.Navigation("Studenti");
-                });
-
-            modelBuilder.Entity("SoftwareDesignProject.Data.Models.Drejtori", b =>
-                {
-                    b.HasOne("SoftwareDesignProject.Data.Models.Ankesa", "Ankesa")
-                        .WithMany()
-                        .HasForeignKey("AnkesaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Ankesa");
                 });
 
             modelBuilder.Entity("SoftwareDesignProject.Data.Models.ProfileMatch", b =>

@@ -1,8 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using SoftwareDesignProject.Data;
-using SoftwareDesignProject.Data.Interfaces;
-using SoftwareDesignProject.Data.Services;
-using SoftwareDesignProject.Services;
+using SoftwareDesignProject;
+using SoftwareDesignProject.AplikimiModule.Interfaces;
+using SoftwareDesignProject.AplikimiModule.Services;
+using SoftwareDesignProject.ProfileMatchModule.Interfaces;
+using SoftwareDesignProject.ProfileMatchModule.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,6 +36,7 @@ builder.Services.AddScoped<IFileService, FileService>();
 builder.Services.AddScoped<IProfileMatchService, ProfileMatchService>();
 builder.Services.AddScoped<IAnkesaService, AnkesaService>();
 builder.Services.AddScoped<IDrejtoriService, DrejtoriService>();
+
 
 var app = builder.Build();
 
