@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Ankesa from './complaint.png';
 import AplikimiCreate from '../AplikimiCrud/aplikimi-create';
 import Lista from './list.png';
+import ListaPritjes from './listing.png';
 import Konkursi from './application.png';
 import Footer from '../../components/footer';
 
@@ -24,9 +25,7 @@ export default function HomePage()
                 <Link to=".">
                    Udhezuesi per pagesa
                 </Link>
-                <Link to="../ListaPritjes">
-                   Lista e pritjes
-                </Link>
+                
             </div>
 
             <div className='njoftimet'>
@@ -35,6 +34,9 @@ export default function HomePage()
                 <div className='njoftimet-div'>
                 <Link to='/Ankesat'>
                     <img src={Ankesa} />
+                </Link>
+                <Link to="../ListaPritjes">
+                    <img src={ListaPritjes} />
                 </Link>
                 <Link to='/Lista'>
                     <img src={Lista}/>
@@ -46,6 +48,7 @@ export default function HomePage()
                 <div className='njoftimet-p'>
                     <p>Hapet konkursi per ankese</p>
                     <p>Lista e rezultateve 22/23</p>
+                    <p>Lista e pritjes 22/23</p>
                     <p>Hapet konkursi per aplikim <br/> per vitin 2022/23</p>
                 </div>
            

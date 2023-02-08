@@ -63,7 +63,7 @@ export default function ListaEPritjes(){
           <th className="table-header-cellT">Komuna</th>
           <th className="table-header-cellT">Pike nota mesatare</th>
           <th className="table-header-cellT">Pike qyteti</th>
-          <th className="table-header-cellT">Pike distance</th>
+          <th className="table-header-cellT">Pike ekstra</th>
           <th className="table-header-cellT">Totali</th>
         </tr>
       </thead>

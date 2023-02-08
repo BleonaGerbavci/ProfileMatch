@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./navbar.css"
 import Dashboard from "../features/Dashboard-drejtori/Dashboard";
 import HomePage from './../features/HomePage/HomePage';
-import Konkursi from "../features/Konkursi/Konkursi";
+
 
 export default function Navbar()
 {
@@ -21,9 +21,6 @@ export default function Navbar()
                    <p>Ankesa</p> 
                 </Link>
                 
-                <Link to="./Konkursi">
-                   <p>Konkursi</p> 
-                </Link>
                 <Link to="./AplikimiCreate">
                    <p>Apliko</p> 
                 </Link>

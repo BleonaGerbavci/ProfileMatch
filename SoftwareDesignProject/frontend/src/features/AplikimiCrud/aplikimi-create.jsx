@@ -1,15 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { toast } from "react-toastify";
 import "./style.css";
-import FileUploader from '../FileUpload/FileUploader';
 import Footer from "../../components/footer";
 
 export default function AplikimiCreate(){
     
-    const [studenti, setStudenti] = useState({});
     const [studentiNrLeternjoftimit, setStudentiNrLeternjoftimit] = useState(0);
-    const [isLoading, setIsLoading] = useState(false);
     const [isSpecialCategory, setIsSpecialCategory] = useState(false);
     const [specialCategoryReason,setSpecialCategoryReason] = useState("");
     const applyDate = Date.now;
@@ -17,15 +13,6 @@ export default function AplikimiCreate(){
     const [error, setError] = useState(false);
     const [fileId, setFileId] = useState();
 
-    
-    // useEffect(() => {
-    //     axios.get("https://localhost:7249/api/Files/GetFileById?fileId=" + fileId)
-    //     .then(response => {
-    //         setFileId(response.data);
-    //     }).catch(function(error){
-    //         console.log(error);
-    //     });
-    // })
 
     const handleSubmit = (e) => {
         e.preventDefault();   
@@ -107,8 +94,17 @@ export default function AplikimiCreate(){
                         <option value="Student me asistence sociale" onChange={(e) => setSpecialCategoryReason(e.target.value)}>Student me asistence sociale</option>
                         <option value="Dy e me shume student nga nje familje aplikant ne QS" onChange={(e) => setSpecialCategoryReason(e.target.value)}>Dy e me shume student nga nje familje aplikant ne QS</option>
 
-                </select>  <br/> <br/>
-
+                </select>  <br/> 
+                
+                
+                <input
+                    type="number" 
+                    name="fileId" 
+                    disabled={!isSpecialCategory}
+                    onChange={(e) => setFileId(e.target.value)}
+                    placeholder= "File Id"
+                   />
+              
                 <input 
                     type="date" 
                     defaultValue={Date.now}/> <br/>
@@ -117,11 +113,12 @@ export default function AplikimiCreate(){
                 <button className="buton-aplikimi" >Apliko</button>  
             </form>
             </div>
-
-            <div className="file-uploader">
-                <FileUploader/>
-            </div>
+            
+            <div className="footer-aplikimi">
             <Footer/>
+            </div>
+          
+           
         </div>
     )
 
